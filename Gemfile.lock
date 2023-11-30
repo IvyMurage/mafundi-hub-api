@@ -121,6 +121,7 @@ GEM
       googleauth
       httpclient (>= 2.5.3)
       json
+    geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     google-apis-core (0.11.2)
@@ -290,6 +291,7 @@ DEPENDENCIES
   devise
   devise-jwt
   firebase (~> 0.2.8)
+  geocoder
   google-cloud-storage (~> 1.8)
   jsonapi-serializer
   pg (~> 1.1)
