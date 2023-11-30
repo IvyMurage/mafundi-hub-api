@@ -44,6 +44,9 @@ gem "devise-jwt"
 # gem for json api serlialization
 gem "jsonapi-serializer"
 
+# location
+gem "geocoder"
+
 # gem for storing image in firebase
 gem "firebase", "~> 0.2.8"
 gem "google-cloud-storage", "~> 1.8", require: false
