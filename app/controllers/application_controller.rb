@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  # wrap_parameters format: []
+  rescue_from CanCan::AccessDenied, with: :render_access_denied_response
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -10,8 +10,13 @@ class ApplicationController < ActionController::API
     devise_parameter_sanitizer.permit(:account_update, keys: [:avatar])
   end
 
-  def sign_in_params
-    byebug
-    params.permit(:email, :password)
+  private
+
+  def current_user_is_client?
+    current_user.role == "client"
+  end
+
+  def render_access_denied_response
+    render json: { message: "Access denied" }, status: :forbidden
   end
 end
