@@ -30,7 +30,8 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
+gem "mini_magick"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 gem "rack-cors"
@@ -42,7 +43,7 @@ gem "devise"
 gem "devise-jwt"
 
 # gem for json api serlialization
-gem "jsonapi-serializer"
+gem "active_model_serializers", "~> 0.10.12"
 
 # location
 gem "geocoder"
@@ -51,6 +52,8 @@ gem "geocoder"
 gem "firebase", "~> 0.2.8"
 gem "google-cloud-storage", "~> 1.8", require: false
 
+# add permission
+gem "cancancan", "~> 3.5"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "byebug", platforms: %i[ mri windows ]
