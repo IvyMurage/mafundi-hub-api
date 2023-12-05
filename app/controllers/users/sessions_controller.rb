@@ -16,8 +16,9 @@ class Users::SessionsController < Devise::SessionsController
     # byebug
     render json: {
              status: { code: 200, message: "Logged in sucessfully." },
-             data: { user: UserSerializer.new(current_user).serializable_hash[:data][:attributes] },
-           }, status: :ok
+             user: UserSerializer.new(current_user),
+           },
+           status: :ok
   end
 
   def respond_to_on_destroy
