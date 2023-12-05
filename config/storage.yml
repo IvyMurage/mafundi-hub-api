@@ -18,7 +18,7 @@ local:
 google:
   service: GCS
   project: mafundi-hub-api
-  credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
+  credentials: <%= Rails.root.join("config/secrets/mafundi-hub-api.json") %>
   bucket: mafundi_profile_pictures-<%= Rails.env %>
 
 google_dev:

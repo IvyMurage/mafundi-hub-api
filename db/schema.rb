@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_30_184814) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_04_124737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,22 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_184814) do
     t.text "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
+  create_table "handymen", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "title"
+    t.text "description"
+    t.string "phone_number"
+    t.integer "year_of_experience", default: 0
+    t.integer "service_id"
+    t.boolean "availability", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_handymen_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -77,6 +93,19 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_184814) do
     t.index ["service_category_id"], name: "index_services_on_service_category_id"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.string "job_title"
+    t.bigint "client_id", null: false
+    t.text "task_description"
+    t.decimal "job_price", precision: 10, scale: 2, default: "0.0"
+    t.integer "service_id"
+    t.boolean "available", default: true
+    t.boolean "instant_booking", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_tasks_on_client_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -91,6 +120,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_184814) do
     t.datetime "updated_at", null: false
     t.string "jti", null: false
     t.string "avatar_url"
+    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -98,5 +128,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_184814) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "handymen", "users"
   add_foreign_key "services", "service_categories"
+  add_foreign_key "tasks", "clients"
 end
