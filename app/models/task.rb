@@ -9,4 +9,6 @@ class Task < ApplicationRecord
   validates :job_price, presence: true
   validates :job_title, presence: true
   validates :location, presence: true
+
+  validates :task_description, uniqueness: { scope: :client_id, message: "You already have a task with this description." }
 end
