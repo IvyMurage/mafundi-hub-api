@@ -1,0 +1,2 @@
+class Handyman < ApplicationRecord
+end
