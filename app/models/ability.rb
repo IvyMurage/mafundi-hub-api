@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(current_user)
-    user = current_user # guest user (not logged in)
+    user = current_user.role || "guest" # guest user (not logged in)
     # can :manage, :all if user.admin?
     can :manage, [Task] if user.role == "client"
 

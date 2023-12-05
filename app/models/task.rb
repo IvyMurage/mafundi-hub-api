@@ -5,8 +5,8 @@ class Task < ApplicationRecord
   has_one :location, as: :locationable, dependent: :destroy
   accepts_nested_attributes_for :location
 
-  validates task_description, presence: true
-  validates job_price, presence: true
-  validates job_title, presence: true
-  validates location, presence: true
+  validates :task_description, presence: true
+  validates :job_price, presence: true
+  validates :job_title, presence: true
+  validates :location, presence: true
 end

@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   load_and_authorize_resource
+  before_action :authenticate_user!
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_task_entity
   rescue_from ActiveRecord::RecordNotFound, with: :render_task_not_found
@@ -16,11 +17,15 @@ class TasksController < ApplicationController
 
   def index
     if task_params[:client_id]
-      @tasks = Task.where(client_id: task_params[:client_id])
+      @tasks = Task.where(client_id: task_params[:client_id]).
+        page(params[:page]).per(params[:per_page] || 10)
+    elsif task_params[:service_id]
+      @tasks = Task.where(service_id: task_params[:service_id]).
+        page(params[:page]).per(params[:per_page] || 10)
     else
-      @tasks = Task.all
+      @tasks = Task.page(params[:page]).per(params[:per_page] || 10)
     end
-    render json: @tasks, serializer: TaskSerializer, status: :ok
+    render json: @tasks, each_serializer: TaskSerializer, meta: pagination_meta(@tasks), status: :ok
   end
 
   def show
@@ -48,7 +53,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(
+    params.permit(
       :job_title,
       :task_description,
       :client_id,
@@ -56,12 +61,25 @@ class TasksController < ApplicationController
       :service_id,
       :available,
       :instant_booking,
+      :duration_label,
       location_attributes: [
         :city,
         :county,
         :country,
       ],
     )
+  end
+
+  def pagination_meta(collection)
+    {
+      current_page: collection.current_page,
+      next_page: collection.next_page,
+      prev_page: collection.prev_page,
+      total_pages: collection.total_pages,
+      total_count: collection.total_count,
+      per_page: collection.limit_value,
+
+    }
   end
 
   def render_unprocessable_task_entity(invalid)

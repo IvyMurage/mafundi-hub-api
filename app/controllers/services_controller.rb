@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  load_and_authorize_resource
+  # load_and_authorize_resource
   rescue_from ActiveRecord::RecordNotFound, with: :render_response_not_found
   wrap_parameters format: []
   #   before_action :authenticate_user!
