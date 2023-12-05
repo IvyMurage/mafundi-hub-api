@@ -34,6 +34,7 @@ class TasksController < ApplicationController
   end
 
   def create
+    byebug
     @task = Task.create!(task_params)
     render json: @task, serializer: TaskSerializer, status: :created
   end
@@ -62,6 +63,7 @@ class TasksController < ApplicationController
       :available,
       :instant_booking,
       :duration_label,
+      task_responsibilities: [],
       location_attributes: [
         :city,
         :county,
