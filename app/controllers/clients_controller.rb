@@ -1,7 +1,8 @@
 class ClientsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_response_not_found
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_client_entity
   wrap_parameters format: []
-  #   before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def search
     if params[:query].present?
@@ -14,18 +15,18 @@ class ClientsController < ApplicationController
 
   def index
     @clients = Client.all
-    render json: @clients, status: :ok
+    render json: @clients, each_serializer: ClientSerializer, status: :ok
   end
 
   def show
     @client = find_client
-    render json: @client
+    render json: @client, serializer: ClientSerializer, status: :ok
   end
 
   def create
     @client = Client.create!(client_params)
 
-    render json: @client, status: :created
+    render json: @client, serializer: ClientSerializer, status: :created
   end
 
   def update
@@ -46,7 +47,7 @@ class ClientsController < ApplicationController
     params.permit(
       :first_name,
       :last_name,
-      :email,
+      :user_id,
       :phone_number,
       location_attributes: [
         :county, :city, :country,
@@ -60,5 +61,9 @@ class ClientsController < ApplicationController
 
   def render_response_not_found
     render json: { error: "Client not found" }, status: :not_found
+  end
+
+  def render_unprocessable_client_entity(invalid)
+    render json: { error: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 end
