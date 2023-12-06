@@ -6,7 +6,7 @@ class AvatarUploadsController < ApplicationController
       current_user.avatar.attach(params[:avatar])
       current_user.avatar_url = url_for(current_user.avatar)
       current_user.save!
-      render json: { status: "Avatar uploaded successfully", user: current_user }
+      render json: { message: "Avatar uploaded successfully", user: current_user }, status: :created
     else
       render json: { error: "Avatar not provided" }, status: :unprocessable_entity
     end
@@ -19,7 +19,7 @@ class AvatarUploadsController < ApplicationController
     current_user.avatar.attach(params[:avatar])
     current_user.avatar_url = service_url(current_user.avatar)
     current_user.save!
-    render json: { status: "Avatar updated successfully", url: current_user.avatar_url }
+    render json: { message: "Avatar updated successfully", url: current_user.avatar_url }, status: :ok
   end
 
   private

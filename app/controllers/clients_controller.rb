@@ -1,6 +1,5 @@
 class ClientsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_response_not_found
-  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_client_entity
   wrap_parameters format: []
   before_action :authenticate_user!
 
@@ -61,9 +60,5 @@ class ClientsController < ApplicationController
 
   def render_response_not_found
     render json: { error: "Client not found" }, status: :not_found
-  end
-
-  def render_unprocessable_client_entity(invalid)
-    render json: { error: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 end

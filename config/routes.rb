@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  resources :handyman_media
   resources :tasks
-  resources :handymen
   devise_for :users,
              path: "",
              path_names: {
@@ -20,6 +20,15 @@ Rails.application.routes.draw do
     patch "update", on: :member, as: "update_task"
     delete "destroy", on: :member, as: "destroy_task"
   end
+
+  resources :handymen do
+    get "search", on: :collection, as: "search_handyman"
+    post "create", on: :collection, as: "create_handyman"
+    get "show", on: :member, as: "show_handyman"
+    patch "update", on: :member, as: "update_handyman"
+    delete "destroy", on: :member, as: "destroy_handyman"
+  end
+
   resources :service_categories do
     get "search", on: :collection, as: "search_services"
     post "create", on: :collection, as: "create_service_category"
