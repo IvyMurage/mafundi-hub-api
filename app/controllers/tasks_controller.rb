@@ -16,15 +16,11 @@ class TasksController < ApplicationController
   end
 
   def index
-    if task_params[:client_id]
-      @tasks = Task.where(client_id: task_params[:client_id]).
-        page(params[:page]).per(params[:per_page] || 10)
-    elsif task_params[:service_id]
-      @tasks = Task.where(service_id: task_params[:service_id]).
-        page(params[:page]).per(params[:per_page] || 10)
-    else
-      @tasks = Task.page(params[:page]).per(params[:per_page] || 10)
-    end
+    @tasks = Task.page(params[:page]).per(params[:per_page] || 10)
+    @tasks = Task.by_location(params[:city]).page(params[:page]).per(params[:per_page] || 10) if params[:city].present?
+    @tasks = Task.where(client_id: task_params[:client_id]).page(params[:page]).per(params[:per_page] || 10) if params[:client_id].present?
+    @tasks = Task.by_service(params[:service_id]).page(params[:page]).per(params[:per_page] || 10) if params[:service_id].present?
+
     render json: @tasks, each_serializer: TaskSerializer, meta: pagination_meta(@tasks), status: :ok
   end
 

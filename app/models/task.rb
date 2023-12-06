@@ -5,6 +5,7 @@ class Task < ApplicationRecord
   serialize :task_responsibilities, Array, coder: JSON
   belongs_to :client # A task belongs to a client.
   belongs_to :service # A task belongs to a service.
+  # belongs_to :locationable, polymorphic: true
 
   has_one :location, as: :locationable, dependent: :destroy # A task has one location.
   accepts_nested_attributes_for :location # Allows for updating a task's location using nested attributes.
@@ -15,4 +16,9 @@ class Task < ApplicationRecord
   validates :location, presence: true # Location is required.
 
   validates :task_description, uniqueness: { scope: :client_id, message: "You already have a task with this description." } # Task description must be unique per client.
+
+  # adding filters
+  scope :by_service, ->(service_id) { where(service_id: service_id) }
+  scope :by_location, ->(city) { joins(:location).where(locations: { city: city }) }
+  scope :by_job_price, ->(job_price) { where(job_price: job_price) }
 end
