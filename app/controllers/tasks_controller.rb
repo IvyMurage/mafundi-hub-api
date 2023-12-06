@@ -12,7 +12,7 @@ class TasksController < ApplicationController
       @tasks = Task.where("job_title ILIKE ? OR task_description ILIKE?",
                           "%#{Task.sanitize_sql_like(params[:query])}%",
                           "%#{Task.sanitize_sql_like(params[:query])}%")
-      render json: @tasks, serializer: TaskSerializer, status: :ok
+      render json: @tasks, each_serializer: TaskSerializer, status: :ok
     end
   end
 
@@ -21,8 +21,8 @@ class TasksController < ApplicationController
     @tasks = Task.by_location(params[:city]).page(params[:page]).per(params[:per_page] || 10) if params[:city].present?
     @tasks = Task.where(client_id: task_params[:client_id]).page(params[:page]).per(params[:per_page] || 10) if params[:client_id].present?
     @tasks = Task.by_service(params[:service_id]).page(params[:page]).per(params[:per_page] || 10) if params[:service_id].present?
-
-    render json: { tasks: @tasks, meta: pagination_meta(@tasks) }, each_serializer: TaskSerializer, status: :ok
+    tasks_json = ActiveModelSerializers::SerializableResource.new(@tasks, each_serializer: TaskSerializer).as_json
+    render json: { meta: pagination_meta(@tasks), task: tasks_json }, status: :ok
   end
 
   def show

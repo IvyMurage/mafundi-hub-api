@@ -5,13 +5,17 @@ class LocationsController < ApplicationController
   end
 
   def create
-    byebug
     @location = Location.create!(location_params)
     render json: @location, status: :created
   end
 
+  def update
+    @location = Location.find(params[:id])
+    @location.update!(location_params)
+    render json: @location, status: :ok
+  end
+
   def geocode_address
-    byebug
     if params[:address].present?
       @location = Geocoder.search(params[:address])
       render json: { latitude: @location[0].latitude, longitude: @location[0].longitude }

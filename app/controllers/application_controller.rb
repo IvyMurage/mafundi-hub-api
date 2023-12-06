@@ -21,7 +21,7 @@ class ApplicationController < ActionController::API
     render json: { message: "Access denied" }, status: :forbidden
   end
 
-  def render_unprocessable_client_entity(invalid)
+  def render_unprocessable_entity(invalid)
     render json: { error: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 end

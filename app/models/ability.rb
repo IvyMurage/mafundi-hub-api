@@ -7,6 +7,9 @@ class Ability
     user = current_user # guest user (not logged in)
     # can :manage, :all if user.admin?
     can :manage, [Task] if user.role == "client"
+    can :create, [Handyman] if user.role == "handyman"
+    can :update, [Handyman] if user.role == "handyman"
+    can :read, [Handyman] if user.role == "handyman"
 
     # Define abilities for the user here. For example:
     #

@@ -23,4 +23,5 @@ class Handyman < ApplicationRecord
 
   # adding filters
   scope :by_location, ->(city) { joins(:location).where(locations: { city: city }) }
+  #   validates :user_id, uniqueness: { scope: :user_id, message: "Already exists." } # Task description must be unique per client.
 end
