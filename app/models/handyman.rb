@@ -1,7 +1,7 @@
 class Handyman < ApplicationRecord
   serialize :handyman_skills, Array, coder: JSON
   belongs_to :user
-  has_one :handyman_media
+  has_many_attached :work_photos
   belongs_to :service
   has_one :location, as: :locationable, dependent: :destroy
   accepts_nested_attributes_for :location

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   resources :handyman_media
   resources :tasks
   devise_for :users,
@@ -61,6 +62,7 @@ Rails.application.routes.draw do
   post "upload_avatar", to: "avatar_uploads#upload"
   patch "update_avatar", to: "avatar_uploads#update"
   patch "user_role", to: "user_roles#add_user_role"
+  post "work_photos", to: "handyman_media#upload"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

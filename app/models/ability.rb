@@ -10,6 +10,7 @@ class Ability
     can :create, [Handyman] if user.role == "handyman"
     can :update, [Handyman] if user.role == "handyman"
     can :read, [Handyman] if user.role == "handyman"
+    can :destroy, [Handyman] if user.role == "handyman"
 
     # Define abilities for the user here. For example:
     #

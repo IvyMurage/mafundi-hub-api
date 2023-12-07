@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_06_103150) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_07_102052) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_06_103150) do
     t.text "media_urls"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "work_photos", default: [], array: true
     t.index ["handyman_id"], name: "index_handyman_media_on_handyman_id"
   end
 
@@ -86,6 +87,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_06_103150) do
     t.string "locationable_type"
     t.bigint "locationable_id"
     t.index ["locationable_type", "locationable_id"], name: "index_locations_on_locationable"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "comment"
+    t.integer "task_id"
+    t.integer "rating"
+    t.integer "handyman_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "service_categories", force: :cascade do |t|
