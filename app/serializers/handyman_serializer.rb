@@ -1,5 +1,5 @@
 class HandymanSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :title, :year_of_experience, :description, :handyman_skills, :availability, :phone_number, :user_email, :service_name
+  attributes :id, :first_name, :last_name, :title, :year_of_experience, :availability, :phone_number, :user_email, :service_name, :description, :handyman_skills, :media_url
 
   has_one :location, as: :locationable
 

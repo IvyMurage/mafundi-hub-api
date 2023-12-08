@@ -4,12 +4,12 @@ class HandymanMediaController < ApplicationController
   def upload
     if params[:handyman_id].present?
       @handyman = Handyman.find(params[:handyman_id])
-      byebug
       @handyman.work_photos.attach(params[:work_photos])
-      work_photo_urls = @handyman.work_photos.map do |photo|
+      @handyman.media_url = @handyman.work_photos.map do |photo|
         url_for(photo)
       end
-      render json: { status: "success", message: "Upload successful!", work_photos: work_photo_urls }, status: :ok
+      @handyman.save!
+      render json: { status: "success", message: "Upload successful!", media: @handyman }, status: :ok
     else
       render json: { error: "Photos not provided" }, status: :unprocessable_entity
     end

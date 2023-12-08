@@ -2,7 +2,7 @@
 # Each task belongs to a client and a service, and has one location.
 # Tasks are validated for the presence of task_description, job_price, job_title, location, and their uniqueness.
 class Task < ApplicationRecord
-  serialize :task_responsibilities, Array, coder: JSON
+  serialize :task_responsibilities, type: Array, coder: JSON
   belongs_to :client # A task belongs to a client.
   belongs_to :service # A task belongs to a service.
   # belongs_to :locationable, polymorphic: true

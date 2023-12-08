@@ -1,10 +1,13 @@
 class Handyman < ApplicationRecord
-  serialize :handyman_skills, Array, coder: JSON
+  serialize :handyman_skills, type: Array, coder: JSON
+  serialize :media_url, type: Array, coder: JSON
   belongs_to :user
-  has_many_attached :work_photos
   belongs_to :service
+  has_many_attached :work_photos, dependent: :destroy
   has_one :location, as: :locationable, dependent: :destroy
+
   accepts_nested_attributes_for :location
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :phone_number, presence: true

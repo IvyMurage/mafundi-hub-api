@@ -59,6 +59,7 @@ class HandymenController < ApplicationController
                   :phone_number,
                   :user_id,
                   :service_id,
+                  :media_url,
                   :year_of_experience,
                   :availability,
                   handyman_skills: [],
