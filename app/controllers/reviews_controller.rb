@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   include Pagination
   before_action :authenticate_user!
   wrap_parameters format: []
-  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_task_entity
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   rescue_from ActiveRecord::RecordNotFound, with: :render_review_not_found_response
 
   def index
