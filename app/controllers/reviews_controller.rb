@@ -8,7 +8,6 @@ class ReviewsController < ApplicationController
   def index
     @reviews = Review.where(handyman_id: params[:handyman_id]).page(params[:page]).per(params[:per_page] || 10)
     reviews_json = ActiveModelSerializers::SerializableResource.new(@reviews, each_serializer: ReviewSerializer).as_json
-
     render json: { meta: pagination_meta(@reviews), reviews: @reviews }, status: :ok
   end
 
@@ -19,13 +18,13 @@ class ReviewsController < ApplicationController
 
   def create
     @review = current_user.client.reviews.create!(review_params)
-    render json: { message: "Review created successfully", review: @review }, status: :created
+    render json: { message: "Review created successfully", review: ReviewSerializer(@review) }, status: :created
   end
 
   def update
     @review = Review.find(params[:id])
     @review.update!(review_params)
-    render json: { message: "Review updated Successfully", review: @review }, status: :ok
+    render json: { message: "Review updated Successfully", review: ReviewSerializer.new(@review) }, status: :ok
   end
 
   def destroy
