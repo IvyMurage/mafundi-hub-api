@@ -5,6 +5,7 @@ class TasksController < ApplicationController
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_task_entity
   rescue_from ActiveRecord::RecordNotFound, with: :render_task_not_found
+
   wrap_parameters format: []
 
   def search
@@ -18,9 +19,9 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.page(params[:page]).per(params[:per_page] || 10)
-    @tasks = Task.by_location(params[:city]).page(params[:page]).per(params[:per_page] || 10) if params[:city].present?
-    @tasks = Task.where(client_id: task_params[:client_id]).page(params[:page]).per(params[:per_page] || 10) if params[:client_id].present?
-    @tasks = Task.by_service(params[:service_id]).page(params[:page]).per(params[:per_page] || 10) if params[:service_id].present?
+    @tasks = @tasks.by_location(params[:city]) if params[:city].present?
+    @tasks = @tasks.where(client_id: task_params[:client_id]) if params[:client_id].present?
+    @tasks = @task.by_service(params[:service_id]) if params[:service_id].present?
     tasks_json = ActiveModelSerializers::SerializableResource.new(@tasks, each_serializer: TaskSerializer).as_json
     render json: { meta: pagination_meta(@tasks), task: tasks_json }, status: :ok
   end

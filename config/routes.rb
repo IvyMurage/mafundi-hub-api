@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :reviews
   resources :handyman_media
   resources :tasks
   devise_for :users,
@@ -13,6 +12,14 @@ Rails.application.routes.draw do
                sessions: "users/sessions",
                registrations: "users/registrations",
              }
+
+  resources :reviews do
+    get "search", on: :collection, as: "search_review"
+    post "create", on: :collection, as: "create_review"
+    get "show", on: :member, as: "show_review"
+    patch "update", on: :member, as: "update_review"
+    delete "destroy", on: :member, as: "destroy_review"
+  end
 
   resources :tasks do
     get "search", on: :collection, as: "search_task"

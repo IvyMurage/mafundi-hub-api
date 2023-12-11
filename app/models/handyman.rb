@@ -4,6 +4,7 @@ class Handyman < ApplicationRecord
   belongs_to :user
   belongs_to :service
   has_many_attached :work_photos, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   has_one :location, as: :locationable, dependent: :destroy
 
   accepts_nested_attributes_for :location
