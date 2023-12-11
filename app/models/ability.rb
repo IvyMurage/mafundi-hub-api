@@ -12,6 +12,8 @@ class Ability
     can :read, [Handyman] if user.role == "handyman"
     can :destroy, [Handyman] if user.role == "handyman"
 
+    can :manage, [Review] if user.role == "client"
+
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

@@ -1,3 +1,4 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id, :comment, :rating, :handyman_id
+  attributes :id, :comment, :rating
+  belongs_to :client
 end

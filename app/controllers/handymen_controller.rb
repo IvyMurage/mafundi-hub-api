@@ -13,9 +13,10 @@ class HandymenController < ApplicationController
   end
 
   def index
-    @handymen = Handyman.by_location(params[:city]) if params[:city].present?
-    @handymen = Handyman.where(service_id: params[:service_id]) if params[:service_id].present?
     @handymen = Handyman.page(params[:page]).per(params[:per_page] || 10)
+
+    @handymen = @handymen.by_location(params[:city]) if params[:city].present?
+    @handymen = @handymen.where(service_id: params[:service_id]) if params[:service_id].present?
 
     @handymen_json = ActiveModelSerializers::SerializableResource.new(@handymen, each_serializer: HandymanSerializer).as_json
     render json: { meta: pagination_meta(@handymen), handymen: @handymen_json }, status: :ok
