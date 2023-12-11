@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = current_user.client.reviews.create!(review_params)
-    render json: { message: "Review created successfully", review: ReviewSerializer(@review) }, status: :created
+    render json: { message: "Review created successfully", review: ReviewSerializer.new(@review) }, status: :created
   end
 
   def update
@@ -28,9 +28,10 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    byebug
     @review = Review.find(params[:id])
     @review.destroy!
-    render json: { message: "Review deleted" }, status: :no_content
+    render json: { message: "Review deleted" }
   end
 
   private
