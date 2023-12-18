@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :job_proposals
   resources :handyman_media
   resources :tasks
   devise_for :users,
@@ -19,6 +20,14 @@ Rails.application.routes.draw do
     get "show", on: :member, as: "show_review"
     patch "update", on: :member, as: "update_review"
     delete "destroy", on: :member, as: "destroy_review"
+  end
+
+  resources :appointments do
+    get "search", on: :collection, as: "search_appointment"
+    post "create", on: :collection, as: "create_appointment"
+    get "show", on: :member, as: "show_appointment"
+    patch "update", on: :member, as: "update_appointment"
+    delete "destroy", on: :member, as: "destroy_appointment"
   end
 
   resources :tasks do

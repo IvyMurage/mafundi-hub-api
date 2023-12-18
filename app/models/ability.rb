@@ -6,7 +6,8 @@ class Ability
   def initialize(current_user)
     user = current_user # guest user (not logged in)
     # can :manage, :all if user.admin?
-    can :manage, [Task] if user.role == "client"
+    return "User is not authenicated" if user == nil
+    can :manage, [Task, Appointment] if user&.role == "client"
     can :create, [Handyman] if user.role == "handyman"
     can :update, [Handyman] if user.role == "handyman"
     can :read, [Handyman] if user.role == "handyman"

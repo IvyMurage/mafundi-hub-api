@@ -44,7 +44,7 @@ gem "devise-jwt"
 
 # gem for json api serlialization
 gem "active_model_serializers", "~> 0.10.12"
-
+gem "jsonapi-serializers", "~> 1.0", ">= 1.0.1"
 # location
 gem "geocoder"
 
