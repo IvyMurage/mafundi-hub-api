@@ -30,8 +30,15 @@ class JobProposalsController < ApplicationController
   end
 
   def create
-    byebug
+    api_key = "AAAAvzb_ydA:APA91bECbTLuVk3cfQIgGqey1kx6MEaXakQkLEelY44luc2HIvqSjApRGRMAVDDBC6aM1AnFQG6SO3yEP1a6DNLg-yjMcCTQmGt37UdJ2OfFJK5dCv9BvHNyiXit84dAgP56eqTC3z0z"
     @job_proposal = JobProposal.create!(job_proposal_params)
+    device_token = "CLIENT_DEVICE_TOKEN"
+    title = "New Job Proposal"
+    body = "You have a new job proposal from a handyman."
+    data = { proposal_id: "123", custom_key: "custom_value" }
+    push_notification_service = PushNotificationService.new(api_key)
+    response = push_notification_service.send_notification_to_client(device_token, title, body, data)
+
     render json: @job_proposal, serializer: JobProposalSerializer, status: :created
   end
 
@@ -55,13 +62,8 @@ class JobProposalsController < ApplicationController
 
   def job_proposal_params
     params.permit(
-      :job_title,
-      :task_description,
-      :client_id,
-      :job_price,
-      :service_id,
+      :task_id,
       :handyman_id,
-      :appointment_id,
       :job_status,
       :proposal_text
     )
