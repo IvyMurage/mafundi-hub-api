@@ -1,11 +1,10 @@
 class CreateJobProposals < ActiveRecord::Migration[7.1]
   def change
     create_table :job_proposals do |t|
-      t.integer :task_id
-      t.string :status
+      t.references :task
+      t.string :job_status, default: "inprogress"
       t.text :proposal_text
-      t.integer :handyman_id
-
+      t.references :handyman
       t.timestamps
     end
   end

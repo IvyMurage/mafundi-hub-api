@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appointments
   resources :job_proposals
   resources :handyman_media
   resources :tasks

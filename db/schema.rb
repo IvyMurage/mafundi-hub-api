@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_18_092922) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_20_111441) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,10 +50,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_18_092922) do
     t.integer "duration"
     t.text "appointment_notes"
     t.string "appointment_status"
-    t.datetime "appointment_time"
+    t.time "appointment_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "payment_method"
     t.index ["client_id"], name: "index_appointments_on_client_id"
     t.index ["handyman_id"], name: "index_appointments_on_handyman_id"
     t.index ["task_id"], name: "index_appointments_on_task_id"
@@ -83,6 +82,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_18_092922) do
     t.text "handyman_skills"
     t.text "media_url"
     t.index ["user_id"], name: "index_handymen_on_user_id"
+  end
+
+  create_table "job_proposals", force: :cascade do |t|
+    t.bigint "task_id"
+    t.string "job_status", default: "inprogress"
+    t.text "proposal_text"
+    t.bigint "handyman_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["handyman_id"], name: "index_job_proposals_on_handyman_id"
+    t.index ["task_id"], name: "index_job_proposals_on_task_id"
   end
 
   create_table "locations", force: :cascade do |t|

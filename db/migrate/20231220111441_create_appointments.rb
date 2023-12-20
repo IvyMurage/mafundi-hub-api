@@ -8,7 +8,7 @@ class CreateAppointments < ActiveRecord::Migration[7.1]
       t.integer :duration
       t.text :appointment_notes
       t.string :appointment_status
-      t.datetime :appointment_time
+      t.time :appointment_time
 
       t.timestamps
     end
