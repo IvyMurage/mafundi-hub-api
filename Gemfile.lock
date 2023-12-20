@@ -125,6 +125,9 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
+    fcm (1.0.8)
+      faraday (>= 1.0.0, < 3.0)
+      googleauth (~> 1)
     ffi (1.16.3)
     firebase (0.2.8)
       googleauth
@@ -320,6 +323,7 @@ DEPENDENCIES
   cancancan (~> 3.5)
   devise
   devise-jwt
+  fcm (~> 1.0, >= 1.0.8)
   firebase (~> 0.2.8)
   geocoder
   google-cloud-storage (~> 1.8)

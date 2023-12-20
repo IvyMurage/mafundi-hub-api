@@ -58,6 +58,8 @@ gem "cancancan", "~> 3.5"
 # gem for pagination
 gem "kaminari", "~> 1.2", ">= 1.2.2"
 
+gem "fcm", "~> 1.0", ">= 1.0.8"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "byebug", platforms: %i[ mri windows ]

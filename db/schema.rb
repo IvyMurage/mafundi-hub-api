@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_20_112143) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_20_115413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,8 +54,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_20_112143) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "payment_method"
+    t.bigint "job_proposal_id"
     t.index ["client_id"], name: "index_appointments_on_client_id"
     t.index ["handyman_id"], name: "index_appointments_on_handyman_id"
+    t.index ["job_proposal_id"], name: "index_appointments_on_job_proposal_id"
     t.index ["task_id"], name: "index_appointments_on_task_id"
   end
 
@@ -172,6 +174,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_20_112143) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "appointments", "clients"
   add_foreign_key "appointments", "handymen"
+  add_foreign_key "appointments", "job_proposals"
   add_foreign_key "appointments", "tasks"
   add_foreign_key "handymen", "users"
   add_foreign_key "reviews", "clients"

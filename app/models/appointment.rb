@@ -2,6 +2,7 @@ class Appointment < ApplicationRecord
   before_validation :set_default_values
   belongs_to :client
   belongs_to :task
+  belongs_to :job_proposal
   belongs_to :handyman
   validates presence: :client
   validates presence: :task
