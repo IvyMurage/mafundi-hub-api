@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :mpesas
   resources :appointments
   resources :job_proposals
   resources :handyman_media

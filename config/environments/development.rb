@@ -68,4 +68,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.action_mailer.default_url_options = { host: "localhost", port: 3001 }
+
+  config.hosts << /[a-z0-9]+\.ngrok\.io/
 end

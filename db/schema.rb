@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_21_101140) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_21_104952) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,6 +109,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_21_101140) do
     t.string "locationable_type"
     t.bigint "locationable_id"
     t.index ["locationable_type", "locationable_id"], name: "index_locations_on_locationable"
+  end
+
+  create_table "mpesas", force: :cascade do |t|
+    t.string "phoneNumber"
+    t.string "amount"
+    t.string "checkoutRequestID"
+    t.string "merchantRequestID"
+    t.string "mpesaReceiptNumber"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
