@@ -6,7 +6,6 @@ class PushNotificationService
   end
 
   def send_notification_to_client(device_token, title, body, data)
-    byebug
     options = {
       "notification": {
         "title": title,

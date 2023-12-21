@@ -4,9 +4,7 @@ class Appointment < ApplicationRecord
   belongs_to :task
   belongs_to :job_proposal
   belongs_to :handyman
-  validates presence: :client
-  validates presence: :task
-  validates presence: :handyman
+
   validates :duration, numericality: { greater_than_or_equal_to: 0 }
   validates :appointment_status, inclusion: { in: %w[scheduled confirmed canceled] }
 
