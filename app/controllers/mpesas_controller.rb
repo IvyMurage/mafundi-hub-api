@@ -32,4 +32,7 @@ class MpesasController < ApplicationController
     AccessToken.create!(token: token)
     token
   end
+
+  def stkpush
+  end
 end
