@@ -1,12 +1,13 @@
 databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
+  - name: postgres
+    ipAllowList: []
+    databaseName: mafundi-hub-app
+    user: mafundi-hub-app
     plan: free
 
 services:
   - type: web
-    name: mysite
+    name: mafundi-hub-app
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
@@ -15,7 +16,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite
+          name: postgres
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
