@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :mpesas
   resources :appointments
   resources :job_proposals
   resources :handyman_media
@@ -81,6 +80,10 @@ Rails.application.routes.draw do
   patch "update_avatar", to: "avatar_uploads#update"
   patch "user_role", to: "user_roles#add_user_role"
   post "work_photos", to: "handyman_media#upload"
+
+  resources :mpesas
+  post "/stkpush", to: "mpesas#stkpush"
+  # post "/stkpush_callback", to: "mpesas#stkpush_callback"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
