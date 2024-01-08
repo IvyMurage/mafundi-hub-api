@@ -1,7 +1,7 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: mafundi-hub-api
+    databaseName: mafundi-hub-api-development
     user: mafundi-hub-api
     plan: free
 
