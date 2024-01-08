@@ -1,13 +1,13 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: mafundi-hub-app
-    user: mafundi-hub-app
+    databaseName: mafundi-hub-api
+    user: mafundi-hub-api
     plan: free
 
 services:
   - type: web
-    name: mafundi-hub-app
+    name: mafundi-hub-api
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
