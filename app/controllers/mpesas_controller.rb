@@ -1,5 +1,6 @@
 class MpesasController < ApplicationController
   require "rest-client"
+  rescue_from SocketError, with: :OfflineMode
 
   def stkpush
     phoneNumber = params[:phone_number]
@@ -124,5 +125,9 @@ class MpesasController < ApplicationController
     AccessToken.create!(token: @token)
 
     @token
+  end
+
+  def OfflineMode
+    render json: { error: "You are offline" }, status: :not_found
   end
 end
