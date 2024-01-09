@@ -26,6 +26,7 @@ class MpesasController < ApplicationController
     }.to_json
 
     headers = {
+      content_type: "application/json",
       Authorization: "Bearer #{get_access_token}",
     }
 
