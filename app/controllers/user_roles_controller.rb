@@ -3,7 +3,11 @@ class UserRolesController < ApplicationController
 
   def add_user_role
     user = User.find(params[:user_id])
-    user.add_role(:role)
+
+    user.add_role(:client) if role === "client"
+    user.add_role(:handyman) if role === "handyman"
+    user.add_role(:admin) if role === "admin"
+
     render json: { status: "User role updated successfully" }
   end
 
