@@ -8,14 +8,14 @@ class Ability
     can :manage, [Task] if user.has_role?(:client)
     can :read, [Task] if user.has_role?(:handyman)
     can :manage, [all] if user.has_role?(:admin)
-    can :manage, [Appointment] if user.role?(:client)
-    can :create, [Handyman] if user.role?(:handyman)
-    can :update, [Handyman] if user.role?(:handyman)
-    can :read, [Handyman] if user.role?(:handyman)
-    can :destroy, [Handyman] if user.role?(:handyman)
-    can :manage, [JobProposal] if user.role?(:handyman)
+    can :manage, [Appointment] if user.has_role?(:client)
+    can :create, [Handyman] if user.has_role?(:handyman)
+    can :update, [Handyman] if user.has_role?(:handyman)
+    can :read, [Handyman] if user.has_role?(:handyman)
+    can :destroy, [Handyman] if user.has_role?(:handyman)
+    can :manage, [JobProposal] if user.has_role?(:handyman)
 
-    can :manage, [Review] if user.role?(:client)
+    can :manage, [Review] if user.has_role?(:client)
 
     # Define abilities for the user here. For example:
     #
