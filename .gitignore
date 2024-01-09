@@ -43,3 +43,5 @@
 /config/master.key
 
 /config/secrets/*
+
+/config/credentials/production.key
