@@ -4,9 +4,17 @@ class UserRolesController < ApplicationController
   def add_user_role
     user = User.find(params[:user_id])
 
-    user.add_role(:client) if user_role_params[:role] === "client"
-    user.add_role(:handyman) if user_role_params[:role] === "handyman"
-    user.add_role(:admin) if user_role_params[:role] === "admin"
+    case user_role_params[:role]
+    when "client"
+      user.add_role(:client)
+    when "handyman"
+      user.add_role(:handyman)
+    when "admin"
+      user.add_role(:admin)
+    else
+      render json: { error: "Invalid role provided" }, status: :unprocessable_entity
+      return
+    end
 
     render json: { status: "User role updated successfully" }
   end
