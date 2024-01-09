@@ -8,8 +8,8 @@ class MpesasController < ApplicationController
 
     url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
     timestamp = "#{Time.now.strftime "%Y%m%d%H%M%S"}"
-    business_short_code = 174379
-    passkey = ENV["MPESA_PASSKEY"]
+    business_short_code = Rails.application.credentials.dig(:mpesa_keys, :mpesa_shortcode)
+    passkey = Rails.application.credentials.dig(:mpesa_keys, :mpesa_passkey)
     password = Base64.strict_encode64("#{business_short_code}#{passkey}#{timestamp}")
     payload = {
       "BusinessShortCode": business_short_code,
@@ -20,7 +20,7 @@ class MpesasController < ApplicationController
       "PartyA": phoneNumber,
       "PartyB": business_short_code,
       "PhoneNumber": phoneNumber,
-      "CallBackURL": "#{ENV["CALLBACK_URL"]}/callback_url",
+      "CallBackURL": "#{Rails.application.credentials.dig(:mpesa_keys, :callback_url)}/callback_url",
       "AccountReference": "Trial ROR MPESA",
       "TransactionDesc": "ROR trial",
     }.to_json
@@ -98,11 +98,12 @@ class MpesasController < ApplicationController
     @url =
       "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
 
-    @consumer_key = ENV["MPESA_CONSUMER_KEY"]
-    @consumer_secret = ENV["MPESA_CONSUMER_SECRET"]
+    @consumer_key = Rails.application.credentials.dig(:mpesa_keys, :mpesa_consumer_key)
+    @consumer_secret = Rails.application.credentials.dig(:mpesa_keys, :mpesa_consumer_secret)
+
     @userpass = Base64.strict_encode64("#{@consumer_key}:#{@consumer_secret}")
     @headers = { Authorization: "Bearer #{@userpass}" }
-
+    byebug
     res =
       RestClient::Request.execute(
         url: @url,
@@ -125,7 +126,7 @@ class MpesasController < ApplicationController
     @token = body[:access_token]
 
     AccessToken.destroy_all()
-    AccessToken.create!(Token: @token)
+    AccessToken.create!(token: @token)
 
     @token
   end
