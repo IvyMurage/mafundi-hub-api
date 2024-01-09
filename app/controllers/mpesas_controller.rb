@@ -20,7 +20,7 @@ class MpesasController < ApplicationController
       "PartyA": phoneNumber,
       "PartyB": business_short_code,
       "PhoneNumber": phoneNumber,
-      "CallBackURL": "#{ENV["CALLBACK_URL"]}",
+      "CallBackURL": "#{ENV["CALLBACK_URL"]}/callback_url",
       "AccountReference": "Trial ROR MPESA",
       "TransactionDesc": "ROR trial",
     }.to_json
@@ -107,9 +107,7 @@ class MpesasController < ApplicationController
       RestClient::Request.execute(
         url: @url,
         method: :get,
-        headers: {
-          Authorization: "Basic #{@userpass}",
-        },
+        headers: { Authorization: "Basic #{@userpass}" },
       )
     res
   end
