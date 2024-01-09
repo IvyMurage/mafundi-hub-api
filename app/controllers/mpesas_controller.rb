@@ -100,10 +100,11 @@ class MpesasController < ApplicationController
     @consumer_secret = ENV["MPESA_CONSUMER_SECRET"]
     @userpass = Base64.strict_encode64("#{@consumer_key}:#{@consumer_secret}")
     @headers = { Authorization: "Basic #{@userpass}" }
-
     res = RestClient::Request.execute(url: @url,
                                       method: :get,
-                                      headers: @headers)
+                                      headers: {
+                                        Authorization: "Basic #{userpass}",
+                                      })
 
     res
   end
