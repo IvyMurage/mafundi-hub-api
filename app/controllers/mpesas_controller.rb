@@ -8,7 +8,7 @@ class MpesasController < ApplicationController
 
     url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
     timestamp = "#{Time.now.strftime "%Y%m%d%H%M%S"}"
-    business_short_code = ENV["MPESA_SHORTCODE"]
+    business_short_code = 174379
     passkey = ENV["MPESA_PASSKEY"]
     password = Base64.strict_encode64("#{business_short_code}#{passkey}#{timestamp}")
     payload = {
