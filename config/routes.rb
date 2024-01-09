@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   resources :appointments
   resources :job_proposals
-  resources :handyman_media
-  resources :tasks
+
   devise_for :users,
              path: "",
              path_names: {
@@ -21,6 +20,14 @@ Rails.application.routes.draw do
     get "show", on: :member, as: "show_review"
     patch "update", on: :member, as: "update_review"
     delete "destroy", on: :member, as: "destroy_review"
+  end
+
+  resources :job_proposals do
+    get "search", on: :collection, as: "search_job_proposal"
+    post "create", on: :collection, as: "create_job_proposal"
+    get "show", on: :member, as: "show_job_proposal"
+    patch "update", on: :member, as: "update_job_proposal"
+    delete "destroy", on: :member, as: "destroy_job_proposal"
   end
 
   resources :appointments do
