@@ -103,7 +103,6 @@ class MpesasController < ApplicationController
 
     @userpass = Base64.strict_encode64("#{@consumer_key}:#{@consumer_secret}")
     @headers = { Authorization: "Bearer #{@userpass}" }
-    byebug
     res =
       RestClient::Request.execute(
         url: @url,
