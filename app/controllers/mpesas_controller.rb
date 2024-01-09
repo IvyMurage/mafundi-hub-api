@@ -101,14 +101,14 @@ class MpesasController < ApplicationController
     @userpass = Base64.strict_encode64("#{@consumer_key}:#{@consumer_secret}")
     @headers = { Authorization: "Basic #{@userpass}" }
     res = RestClient::Request.execute(url: @url,
-                                      method: :get,
-                                      headers: {
+                                      method: :get, headers: {
                                         Authorization: "Basic #{@userpass}",
                                       })
 
     if res.code != 200
       raise MpesaError.new("Unable to generate access token")
     end
+
     res
   end
 
