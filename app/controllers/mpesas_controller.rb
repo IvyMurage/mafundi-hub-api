@@ -56,8 +56,8 @@ class MpesasController < ApplicationController
 
     url = "https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query"
     timestamp = "#{Time.now.strftime "%Y%m%d%H%M%S"}"
-    business_short_code = ENV["MPESA_SHORTCODE"]
-    passkey = ENV["MPESA_PASSKEY"]
+    business_short_code = Rails.application.credentials.dig(:mpesa_keys, :mpesa_shortcode)
+    passkey = Rails.application.credentials.dig(:mpesa_keys, :mpesa_passkey)
     password = Base64.strict_encode64("#{business_short_code}#{passkey}#{timestamp}")
     payload = {
       "BusinessShortCode": business_short_code,
