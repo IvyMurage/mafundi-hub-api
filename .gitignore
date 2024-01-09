@@ -18,6 +18,9 @@
 # Ignore lacal_env.yml
 /config/local_env.yml
 
+# Ignore production_env.yml
+/config/production_env.yml
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
