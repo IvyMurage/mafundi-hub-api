@@ -83,7 +83,7 @@ class MpesasController < ApplicationController
       when 200
         [:success, JSON.parse(response.to_str)]
       when 400
-        [:error, JSON.parse(response.to_str)]
+        render json: [:error, JSON.parse(response.to_str)]
       else
         fail "Invalid response #{response.to_str} received"
       end
@@ -101,21 +101,16 @@ class MpesasController < ApplicationController
     @userpass = Base64.strict_encode64("#{@consumer_key}:#{@consumer_secret}")
     @headers = { Authorization: "Basic #{@userpass}" }
     res = RestClient::Request.execute(url: @url,
-                                      method: :get, headers: {
+                                      method: :get,
+                                      headers: {
                                         Authorization: "Basic #{@userpass}",
                                       })
-
-    if res.code != 200
-      raise MpesaError.new("Unable to generate access token")
-    end
 
     res
   end
 
   def get_access_token
     res = generate_access_token()
-
-    puts res
 
     if res.code != 200
       r = generate_access_token()
