@@ -28,6 +28,13 @@ module MafundiHubApi
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
+    config.before_configuration do
+      env_file = File.join(Rails.root, "config", "local_env.yml")
+      YAML
+        .load(File.open(env_file))
+        .each { |key, value| ENV[key.to_s] = value } if File.exists?(env_file)
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -39,18 +46,9 @@ module MafundiHubApi
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
-    config.api_only = true
 
     # Add additional load paths for your own custom dirs
-    config.before_configuration do
-      env_file = if Rails.env.production?
-          File.join(Rails.root, "config", "production_env.yml")
-        else
-          File.join(Rails.root, "config", "local_env.yml")
-        end
-      YAML.load(File.open(env_file)).each do |key, value|
-        ENV[key.to_s] = value
-      end if File.exist?(env_file)
-    end
+
+    config.api_only = true
   end
 end
