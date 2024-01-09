@@ -3,7 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # Enable DNS rebinding protection and other `Host` header attacks.
-  config.hosts << "https://mafundi-hub-api.onrender.com"
+  config.hosts << "mafundi-hub-api.onrender.com"
 
   # Code is not reloaded between requests.
   config.enable_reloading = false
