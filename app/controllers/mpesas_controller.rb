@@ -42,7 +42,7 @@ class MpesasController < ApplicationController
       when 200
         [:success, JSON.parse(response.to_str)]
       when 400
-        render json: [:error, JSON.parse(response.to_str)]
+        [:error, JSON.parse(response.to_str)]
       else
         fail "Invalid response #{response.to_str} received"
       end
@@ -83,7 +83,7 @@ class MpesasController < ApplicationController
       when 200
         [:success, JSON.parse(response.to_str)]
       when 400
-        render json: { error: JSON.parse(response.to_str) }
+        [error: JSON.parse(response.to_str)]
       else
         fail "Invalid response #{response.to_str} received"
       end
