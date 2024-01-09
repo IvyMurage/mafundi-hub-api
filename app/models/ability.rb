@@ -4,10 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(current_user)
-    # byebug
     user = current_user
-    puts user
-    return "User is not authenicated" if user == nil
     can :manage, [Task] if user&.role == "client"
     can :read, [Task] if user&.role == "handyman"
     can :manage, [Task] if user&.role == "admin"
