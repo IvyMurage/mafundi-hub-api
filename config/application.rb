@@ -41,9 +41,6 @@ module MafundiHubApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.1
-
     # Add additional load paths for your own custom dirs
     config.before_configuration do
       env_file = if Rails.env.production?
