@@ -106,6 +106,9 @@ class MpesasController < ApplicationController
                                         Authorization: "Basic #{@userpass}",
                                       })
 
+    if res.code != 200
+      raise MpesaError.new("Unable to generate access token")
+    end
     res
   end
 
