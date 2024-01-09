@@ -40,20 +40,20 @@ module MafundiHubApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-  end
 
-  # Initialize configuration defaults for originally generated Rails version.
-  config.load_defaults 7.1
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 7.1
 
-  # Add additional load paths for your own custom dirs
-  config.before_configuration do
-    env_file = if Rails.env.production?
-        File.join(Rails.root, "config", "production_env.yml")
-      else
-        File.join(Rails.root, "config", "local_env.yml")
-      end
-    YAML.load(File.open(env_file)).each do |key, value|
-      ENV[key.to_s] = value
-    end if File.exist?(env_file)
+    # Add additional load paths for your own custom dirs
+    config.before_configuration do
+      env_file = if Rails.env.production?
+          File.join(Rails.root, "config", "production_env.yml")
+        else
+          File.join(Rails.root, "config", "local_env.yml")
+        end
+      YAML.load(File.open(env_file)).each do |key, value|
+        ENV[key.to_s] = value
+      end if File.exist?(env_file)
+    end
   end
 end
