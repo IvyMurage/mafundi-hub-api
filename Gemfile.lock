@@ -298,6 +298,7 @@ GEM
       netrc (~> 0.8)
     retriable (3.1.2)
     rexml (3.2.6)
+    rolify (6.0.1)
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
@@ -349,6 +350,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.1.2)
   rest-client
+  rolify
   tzinfo-data
 
 RUBY VERSION

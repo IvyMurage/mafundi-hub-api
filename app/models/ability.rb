@@ -5,17 +5,17 @@ class Ability
 
   def initialize(current_user)
     user = current_user
-    can :manage, [Task] if user&.role == "client"
-    can :read, [Task] if user&.role == "handyman"
-    can :manage, [Task] if user&.role == "admin"
-    can :manage, [Appointment] if user.role == "client"
-    can :create, [Handyman] if user.role == "handyman"
-    can :update, [Handyman] if user.role == "handyman"
-    can :read, [Handyman] if user.role == "handyman"
-    can :destroy, [Handyman] if user.role == "handyman"
-    can :manage, [JobProposal] if user.role == "handyman"
+    can :manage, [Task] if user.has_role?(:client)
+    can :read, [Task] if user.has_role?(:handyman)
+    can :manage, [all] if user.has_role?(:admin)
+    can :manage, [Appointment] if user.role?(:client)
+    can :create, [Handyman] if user.role?(:handyman)
+    can :update, [Handyman] if user.role?(:handyman)
+    can :read, [Handyman] if user.role?(:handyman)
+    can :destroy, [Handyman] if user.role?(:handyman)
+    can :manage, [JobProposal] if user.role?(:handyman)
 
-    can :manage, [Review] if user.role == "client"
+    can :manage, [Review] if user.role?(:client)
 
     # Define abilities for the user here. For example:
     #

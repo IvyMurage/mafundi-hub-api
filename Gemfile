@@ -60,6 +60,8 @@ gem "kaminari", "~> 1.2", ">= 1.2.2"
 
 gem "fcm", "~> 1.0", ">= 1.0.8"
 
+gem "rolify"
+
 # gem for sending email
 
 gem "rest-client"
