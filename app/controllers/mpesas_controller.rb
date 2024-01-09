@@ -115,6 +115,8 @@ class MpesasController < ApplicationController
   def get_access_token
     res = generate_access_token()
 
+    puts res
+
     if res.code != 200
       r = generate_access_token()
       if res.code != 200
