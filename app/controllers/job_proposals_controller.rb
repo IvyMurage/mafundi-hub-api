@@ -30,7 +30,7 @@ class JobProposalsController < ApplicationController
   end
 
   def create
-    api_key = "AAAAvzb_ydA:APA91bECbTLuVk3cfQIgGqey1kx6MEaXakQkLEelY44luc2HIvqSjApRGRMAVDDBC6aM1AnFQG6SO3yEP1a6DNLg-yjMcCTQmGt37UdJ2OfFJK5dCv9BvHNyiXit84dAgP56eqTC3z0z"
+    api_key = Rails.application.credentials.dig(:firebase, :api_key)
     @job_proposal = JobProposal.create!(job_proposal_params)
     device_token = "CLIENT_DEVICE_TOKEN"
     title = "New Job Proposal"

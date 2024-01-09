@@ -8,7 +8,7 @@ class Ability
     user = current_user # guest user (not logged in)
     # can :manage, :all if user.admin?
     # byebug
-    return "User is not authenicated" if user == nil
+    # return "User is not authenicated" if user == nil
     can :manage, [Task] if user&.role == "client"
     can :read, [Task] if user&.role == "handyman"
     can :manage, [Task] if user&.role == "admin"
