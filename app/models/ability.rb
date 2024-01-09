@@ -5,10 +5,9 @@ class Ability
 
   def initialize(current_user)
     # byebug
-    user = current_user # guest user (not logged in)
-    # can :manage, :all if user.admin?
-    # byebug
-    # return "User is not authenicated" if user == nil
+    user = current_user
+    puts user
+    return "User is not authenicated" if user == nil
     can :manage, [Task] if user&.role == "client"
     can :read, [Task] if user&.role == "handyman"
     can :manage, [Task] if user&.role == "admin"
