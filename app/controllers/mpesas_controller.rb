@@ -103,7 +103,7 @@ class MpesasController < ApplicationController
     res = RestClient::Request.execute(url: @url,
                                       method: :get,
                                       headers: {
-                                        Authorization: "Basic #{userpass}",
+                                        Authorization: "Basic #{@userpass}",
                                       })
 
     res
