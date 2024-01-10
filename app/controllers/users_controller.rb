@@ -1,4 +1,4 @@
-class UsersController < Application
+class UsersController < ApplicationController
   # Before action to authenticate the user using devise gem
   # before_action :authenticate_user!
 
