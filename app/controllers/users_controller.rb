@@ -19,10 +19,10 @@ class UsersController < ApplicationController
   def search
     if params[:query].present?
       # Search users with case-insensitive and accent-insensitive matching
-      @users = User.where("email ILIKE?",
-                          "%#{User.sanitize_sql_like(params[:query])}%")
+      @user = User.where("email ILIKE ?",
+                         "%#{User.sanitize_sql_like(params[:query])}%")
       # Render the search results as JSON using the MafundiUserSerializer
-      render json: @users, each_serializer: MafundiUserSerializer, status: :ok
+      render json: @user, serializer: MafundiUserSerializer, status: :ok
     end
   end
 
@@ -34,12 +34,12 @@ class UsersController < ApplicationController
     render json: { meta: pagination_meta(@users), users: users_json }, status: :ok
   end
 
-  # Show action to display a single user by id
-  #   def show
-  #     # Set the user by id and render it as JSON using the MafundiUserSerializer
-  #     @user = set_user
-  #     render json: @user, serializer: MafundiUserSerializer, status: :ok
-  #   end
+  #   Show action to display a single user by id
+  def show
+    # Set the user by id and render it as JSON using the MafundiUserSerializer
+    @user = set_user
+    render json: @user, serializer: MafundiUserSerializer, status: :ok
+  end
 
   # Create action to create a new user with the given parameters
   def create
