@@ -19,10 +19,10 @@ class UsersController < ApplicationController
   def search
     if params[:query].present?
       # Search users with case-insensitive and accent-insensitive matching
-      @user = User.where("email ILIKE ?",
-                         "%#{User.sanitize_sql_like(params[:query])}%")
+      @users = User.where("email ILIKE ?",
+                          "%#{User.sanitize_sql_like(params[:query])}%")
       # Render the search results as JSON using the MafundiUserSerializer
-      render json: @user, serializer: MafundiUserSerializer, status: :ok
+      render json: @users, each_serializer: MafundiUserSerializer, status: :ok
     end
   end
 
