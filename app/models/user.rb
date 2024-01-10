@@ -15,4 +15,13 @@ class User < ApplicationRecord
 
   has_one :client
   has_one_attached :avatar, dependent: :destroy
+  validate :validate_avatar_count, on: :update
+
+  private
+
+  def validate_avatar_count
+    if avatar.attached? && avatar.blob.previous_changes["filename"].present?
+      errors.add(:avatar, "User can only have one attached avatar")
+    end
+  end
 end
