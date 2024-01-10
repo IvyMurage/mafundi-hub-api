@@ -22,7 +22,7 @@ class AvatarUploadsController < ApplicationController
       current_user.avatar.purge
     end
     current_user.avatar.attach(params[:avatar])
-    current_user.avatar_url = service_url(current_user.avatar)
+    current_user.avatar_url = "https://storage.googleapis.com/#{Rails.application.credentials.google_profile_bucket}/#{current_user.avatar.key.to_s}"
     current_user.save!
     render json: { message: "Avatar updated successfully", url: current_user.avatar_url }, status: :ok
   end
