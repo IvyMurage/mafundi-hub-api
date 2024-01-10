@@ -72,7 +72,7 @@ class UsersController < ApplicationController
 
   # Filter the user parameters for mass assignment
   def user_params
-    params.require(:user).permit(:username, :email, :password, :bio, :image, :phone_number, :location, :website, :github_username, :twitter_username)
+    params.permit(:email, :password, :password_confirmation, :avatar_url)
   end
 
   # Render user not found response for RecordNotFound exception
