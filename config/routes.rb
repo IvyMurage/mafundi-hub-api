@@ -86,8 +86,19 @@ Rails.application.routes.draw do
   post "work_photos", to: "handyman_media#upload"
 
   # Get all users
-  get "get_users", to: "users#index"
-  get "get_user", to: "users#show"
+  resources :users do
+    get "search", on: :collection, as: "search_user"
+    post "create", on: :collection, as: "create_user"
+    get "show", on: :member, as: "show_user"
+    patch "update", on: :member, as: "update_user"
+    delete "destroy", on: :member, as: "destroy_user"
+  end
+  # get "search_users", to: "users#search"
+  # get "get_users", to: "users#index"
+  # get "get_user_users", to: "users#show"
+  # post "create_user_users", to: "users#create"
+  # patch "update_user", to: "users#update"
+  # delete "delete_user", to: "users#destroy"
 
   resources :mpesas
   post "/stkpush", to: "mpesas#stkpush"
