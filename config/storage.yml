@@ -18,7 +18,7 @@ local:
 google:
   service: GCS
   project: mafundi-hub-api
-  credentials: <%= Rails.application.credentials.dig(:google.as_json) %>
+  credentials: <%= Rails.application.credentials.dig(:google).as_json %>
   bucket: mafundi_profile_pictures-<%= Rails.env %>
 
 google_dev:
