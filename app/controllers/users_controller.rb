@@ -57,6 +57,12 @@ class UsersController < ApplicationController
     render json: @user, serializer: MafundiUserSerializer, status: :ok
   end
 
+  def destroy
+    @user = set_user
+    @user.destroy!
+    render json: { message: "User has been deleted successfully" }
+  end
+
   # Private methods
   private
 
