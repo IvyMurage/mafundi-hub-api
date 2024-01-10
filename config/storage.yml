@@ -21,14 +21,11 @@ google:
   credentials: <%= Rails.application.credentials.dig(:google).as_json %>
   bucket: mafundi_profile_pictures-<%= Rails.env %>
 
-google_dev: 
+google_dev:
   service: GCS
   project: mafundi_hub_api
   credentials: <%= Rails.root.join("config/secrets/mafundi-hub-api.json") %>
   bucket: mafundi_profile_pictures
-
-
-
 # Use bin/rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:
 #   service: AzureStorage
