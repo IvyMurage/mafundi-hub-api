@@ -66,6 +66,10 @@ class UsersController < ApplicationController
     User.find(params[:id])
   end
 
+  def users_json
+    ActiveModelSerializers::SerializableResource.new(@users, each_serializer: MafundiUserSerializer).as_json
+  end
+
   # Filter the user parameters for mass assignment
   def user_params
     params.require(:user).permit(:username, :email, :password, :bio, :image, :phone_number, :location, :website, :github_username, :twitter_username)
