@@ -5,15 +5,15 @@ class UsersController < ApplicationController
   # Before action to load and authorize the resource using cancancan gem
   # load_and_authorize_resource
 
+  # Wrap the request parameters in a hash with format key
+  wrap_parameters format: []
+  include Pagination
+
   # Rescue from ActiveRecord::RecordInvalid exception and render unprocessable entity response
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
   # Rescue from ActiveRecord::RecordNotFound exception and render user not found response
   rescue_from ActiveRecord::RecordNotFound, with: :render_user_not_found
-
-  # Wrap the request parameters in a hash with format key
-  wrap_parameters format: []
-  include Pagination
 
   # Search users by query parameter in the username or email fields
   def search
