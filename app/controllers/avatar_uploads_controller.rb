@@ -4,7 +4,7 @@ class AvatarUploadsController < ApplicationController
   def upload
     if params[:avatar].present?
       current_user.avatar.attach(params[:avatar])
-      current_user.avatar_url = "https://storage.googleapis.com/mafundi_profile_pictures/#{current_user.avatar.key.to_s}"
+      current_user.avatar_url = "https://storage.googleapis.com/#{Rails.application.credentails.google_profile_bucket}/#{current_user.avatar.key.to_s}"
       current_user.save!
       render json: { message: "Avatar uploaded successfully", user: current_user }, status: :created
     else
