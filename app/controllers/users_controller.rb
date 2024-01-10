@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   # Wrap the request parameters in a hash with format key
   wrap_parameters format: []
+  include Pagination
 
   # Search users by query parameter in the username or email fields
   def search
