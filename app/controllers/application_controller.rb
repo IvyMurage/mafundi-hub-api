@@ -32,7 +32,7 @@ class ApplicationController < ActionController::API
   end
 
   # This method is used to render a JSON response with a status of 422 (Unprocessable Entity) when a record is invalid and cannot be saved
-  def render_unprocessable_entity(invalid)
-    render json: { error: invalid.record.errors.full_messages }, status: :unprocessable_entity
+  def render_unprocessable_entity(exception)
+    render json: { error: exception.record.errors.full_messages }, status: :unprocessable_entity
   end
 end
