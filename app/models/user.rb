@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   has_one :client
   has_one_attached :avatar, dependent: :destroy
-  validate :validate_avatar_count, on: :create
+  validate :validate_avatar_count
 
   private
 
