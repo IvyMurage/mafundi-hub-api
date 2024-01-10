@@ -85,6 +85,10 @@ Rails.application.routes.draw do
   patch "user_role", to: "user_roles#add_user_role"
   post "work_photos", to: "handyman_media#upload"
 
+  # Get all users
+  get "get_users", to: "users#index"
+  get "get_user", to: "users#show"
+
   resources :mpesas
   post "/stkpush", to: "mpesas#stkpush"
   post "/stkpushquery", to: "mpesas#stkpush_query"
