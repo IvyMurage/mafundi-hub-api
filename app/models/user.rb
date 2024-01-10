@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   def validate_avatar_count
     if avatar.attached? && avatar.blob.previous_changes["filename"].present?
-      errors.add(:avatar, "User can only have one attached avatar")
+      errors.add_to_base("User can only have one attached avatar")
     end
   end
 end
