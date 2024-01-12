@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         status: { code: 200, message: "Signed up sucessfully." },
         user: UserSerializer.new(current_user),
       }
-      ModelMailer.welcome_email(current_user).deliver
+      UserMailer.with(user: current_user).welcome_email.deliver_now
     else
       render json: {
         status: { message: "User couldn't be created successfully.", errors: resource.errors.full_messages },
