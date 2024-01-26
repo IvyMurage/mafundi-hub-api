@@ -1,5 +1,5 @@
 class UserRolesController < ApplicationController
-  skip_before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:add_user_role]
 
   def add_user_role
     user = User.find(params[:user_id])
