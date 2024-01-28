@@ -13,7 +13,8 @@ class User < ApplicationRecord
          :jwt_authenticatable,
          jwt_revocation_strategy: self
 
-  has_one :client
+  has_one :client, dependent: :destroy
+  has_one :handyman, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
   validate :validate_avatar_count, on: :avatar_upload
 

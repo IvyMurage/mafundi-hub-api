@@ -1,0 +1,689 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/clients/search":
+    get:
+      summary: search client
+      responses:
+        '200':
+          description: successful
+  "/clients/create":
+    post:
+      summary: create client
+      responses:
+        '200':
+          description: successful
+  "/clients/{id}/show":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show client
+      responses:
+        '200':
+          description: successful
+  "/clients/{id}/update":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: update client
+      responses:
+        '200':
+          description: successful
+  "/clients/{id}/destroy":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete client
+      responses:
+        '200':
+          description: successful
+  "/clients":
+    get:
+      summary: list clients
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create client
+      responses:
+        '200':
+          description: successful
+  "/clients/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show client
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update client
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update client
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete client
+      responses:
+        '200':
+          description: successful
+  "/handymen/search":
+    get:
+      summary: search handyman
+      responses:
+        '200':
+          description: successful
+  "/handymen/create":
+    post:
+      summary: create handyman
+      responses:
+        '200':
+          description: successful
+  "/handymen/{id}/show":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show handyman
+      responses:
+        '200':
+          description: successful
+  "/handymen/{id}/update":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: update handyman
+      responses:
+        '200':
+          description: successful
+  "/handymen/{id}/destroy":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete handyman
+      responses:
+        '200':
+          description: successful
+  "/handymen":
+    get:
+      summary: list handymen
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create handyman
+      responses:
+        '200':
+          description: successful
+  "/handymen/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show handyman
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update handyman
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update handyman
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete handyman
+      responses:
+        '200':
+          description: successful
+  "/reviews/search":
+    get:
+      summary: search review
+      responses:
+        '200':
+          description: successful
+  "/reviews/create":
+    post:
+      summary: create review
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                rating:
+                  type: integer
+                client_id:
+                  type: integer
+                handyman_id:
+                  type: integer
+              required:
+              - comment
+              - rating
+              - client_id
+              - handyman_id
+  "/reviews/{id}/show":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show review
+      responses:
+        '200':
+          description: successful
+  "/reviews/{id}/update":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: update review
+      responses:
+        '200':
+          description: successful
+  "/reviews/{id}/destroy":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete review
+      responses:
+        '200':
+          description: successful
+  "/reviews":
+    get:
+      summary: list reviews
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create review
+      responses:
+        '200':
+          description: successful
+  "/reviews/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show review
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update review
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update review
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete review
+      responses:
+        '200':
+          description: successful
+  "/service_categories/search":
+    get:
+      summary: search service_category
+      responses:
+        '200':
+          description: successful
+  "/service_categories/create":
+    post:
+      summary: create service_category
+      responses:
+        '200':
+          description: successful
+  "/service_categories/{id}/show":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show service_category
+      responses:
+        '200':
+          description: successful
+  "/service_categories/{id}/update":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: update service_category
+      responses:
+        '200':
+          description: successful
+  "/service_categories/{id}/destroy":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete service_category
+      responses:
+        '200':
+          description: successful
+  "/service_categories":
+    get:
+      summary: list service_categories
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create service_category
+      responses:
+        '200':
+          description: successful
+  "/service_categories/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show service_category
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update service_category
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update service_category
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete service_category
+      responses:
+        '200':
+          description: successful
+  "/services/search":
+    get:
+      summary: search service
+      responses:
+        '200':
+          description: successful
+  "/services/create":
+    post:
+      summary: create service
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_name:
+                  type: string
+                service_category_id:
+                  type: integer
+              required:
+              - service_name,
+              - service_category_id
+  "/services/{id}/show":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show service
+      responses:
+        '200':
+          description: successful
+  "/services/{id}/update":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: update service
+      responses:
+        '200':
+          description: successful
+  "/services/{id}/destroy":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete service
+      responses:
+        '200':
+          description: successful
+  "/services":
+    get:
+      summary: list services
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create service
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_name:
+                  type: string
+                service_category_id:
+                  type: integer
+              required:
+              - service_name,
+              - service_category_id
+  "/services/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show service
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update service
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update service
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete service
+      responses:
+        '200':
+          description: successful
+  "/tasks/search":
+    get:
+      summary: search task
+      responses:
+        '200':
+          description: successful
+  "/tasks/create":
+    post:
+      summary: create task
+      responses:
+        '200':
+          description: successful
+  "/tasks/{id}/show":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show task
+      responses:
+        '200':
+          description: successful
+  "/tasks/{id}/update":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: update task
+      responses:
+        '200':
+          description: successful
+  "/tasks/{id}/destroy":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete task
+      responses:
+        '200':
+          description: successful
+  "/tasks":
+    get:
+      summary: list tasks
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create task
+      responses:
+        '200':
+          description: successful
+  "/tasks/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show task
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update task
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update task
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete task
+      responses:
+        '200':
+          description: successful
+  "/users/search":
+    get:
+      summary: search user
+      responses:
+        '200':
+          description: successful
+  "/users/create":
+    post:
+      summary: create user
+      responses:
+        '200':
+          description: successful
+  "/users/{id}/show":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show user
+      responses:
+        '200':
+          description: successful
+  "/users/{id}/update":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: update user
+      responses:
+        '200':
+          description: successful
+  "/users/{id}/destroy":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete user
+      responses:
+        '200':
+          description: successful
+  "/users":
+    get:
+      summary: list users
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create user
+      responses:
+        '200':
+          description: successful
+  "/users/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show user
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update user
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update user
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete user
+      responses:
+        '200':
+          description: successful
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: '127.0.0.1:'

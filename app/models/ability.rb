@@ -11,7 +11,7 @@ class Ability
     can :manage, [Appointment] if user.has_role?(:client)
     can :create, [Handyman] if user.has_role?(:handyman)
     can :update, [Handyman] if user.has_role?(:handyman)
-    can :read, [Handyman] if user.has_role?(:handyman)
+    can :read, [Handyman] if user.has_role?(:client)
     can :destroy, [Handyman] if user.has_role?(:handyman)
     can :manage, [JobProposal] if user.has_role?(:handyman)
 
