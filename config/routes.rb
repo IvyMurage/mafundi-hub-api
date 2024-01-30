@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  mount Rswag::Ui::Engine => '/api-docs'
-  mount Rswag::Api::Engine => '/api-docs'
+  mount Rswag::Ui::Engine => "/api-docs"
+  mount Rswag::Api::Engine => "/api-docs"
   devise_for :users,
              path: "",
              path_names: {
@@ -72,7 +72,7 @@ Rails.application.routes.draw do
   resources :clients do
     get "search", on: :collection, as: "search_client"
     post "create", on: :collection, as: "create_client"
-    get "show", on: :member, as: "show_client"
+    get "/clients", to: "clients#show"
     patch "update", on: :member, as: "update_client"
     delete "destroy", on: :member, as: "destroy_client"
   end
