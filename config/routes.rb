@@ -72,7 +72,7 @@ Rails.application.routes.draw do
   resources :clients do
     get "search", on: :collection, as: "search_client"
     post "create", on: :collection, as: "create_client"
-    get "/clients", to: "clients#show"
+    get "show", on: :member, as: "show_client"
     patch "update", on: :member, as: "update_client"
     delete "destroy", on: :member, as: "destroy_client"
   end
