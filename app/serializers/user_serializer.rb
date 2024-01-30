@@ -6,9 +6,9 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def user_id
-    if object.user_role == "client"
+    if user_role == "client"
       object.client.id
-    elsif object.user_role == "handyman"
+    elsif user_role == "handyman"
       object.handyman.id
     end
   end
