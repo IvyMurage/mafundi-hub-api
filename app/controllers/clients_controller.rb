@@ -24,7 +24,6 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.create!(client_params)
-
     render json: @client, serializer: ClientSerializer, status: :created
   end
 
