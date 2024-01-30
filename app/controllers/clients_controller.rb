@@ -18,7 +18,7 @@ class ClientsController < ApplicationController
   end
 
   def show
-    @client = find_client
+    @client = Client.find(email: params[:email])
     render json: @client, serializer: ClientSerializer, status: :ok
   end
 
