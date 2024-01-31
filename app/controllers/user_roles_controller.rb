@@ -2,8 +2,8 @@ class UserRolesController < ApplicationController
   before_action :authenticate_user!, except: [:add_user_role]
 
   def add_user_role
+    byebug
     user = User.find(params[:user_id])
-
     case user_role_params[:role]
     when "client"
       user.add_role(:client)

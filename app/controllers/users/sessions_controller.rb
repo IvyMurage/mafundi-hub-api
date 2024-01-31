@@ -8,7 +8,6 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def sign_in_params
-    byebug
     params.permit(:email, :password)
   end
 

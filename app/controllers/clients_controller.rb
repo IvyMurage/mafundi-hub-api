@@ -1,7 +1,9 @@
 class ClientsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_response_not_found
   wrap_parameters format: []
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:create]
+  load_and_authorize_resource
+  skip_load_and_authorize_resource only: [:create]
 
   def search
     if params[:query].present?

@@ -4,12 +4,13 @@ class Ability
   include CanCan::Ability
 
   def initialize(current_user)
+    # byebug
     user = current_user
     can :manage, [Task] if user.has_role?(:client)
     can :read, [Task] if user.has_role?(:handyman)
     can :manage, [all] if user.has_role?(:admin)
     can :manage, [Appointment] if user.has_role?(:client)
-    can :create, [Handyman] if user.has_role?(:handyman)
+    # can :create, [Handyman] if user.has_role?(:handyman)
     can :update, [Handyman] if user.has_role?(:handyman)
     can :read, [Handyman] if user.has_role?(:handyman)
     can :read, [Handyman] if user.has_role?(:client)
