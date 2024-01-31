@@ -16,7 +16,7 @@ class UserRolesController < ApplicationController
       return
     end
 
-    render json: { user: UserSerializer.new(user), status: "User role updated successfully" }
+    render json: { user: UserSignupSerializer.new(user), status: "User role updated successfully" }
   end
 
   private
