@@ -8,6 +8,6 @@ class HandymanSerializer < ActiveModel::Serializer
   end
 
   def service_name
-    object.service.service_name
+    object.service.id
   end
 end
