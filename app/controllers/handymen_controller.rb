@@ -36,7 +36,6 @@ class HandymenController < ApplicationController
     @handyman = Handyman.find(params[:id])
     if params[:location_attributes].present?
       location_attributes = params.require(:location_attributes).permit(:county, :city, :country)
-      #   byebug
       @handyman.location.update!(location_attributes)
     end
 

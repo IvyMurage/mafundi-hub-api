@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_09_202436) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_31_125912) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,7 +77,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_202436) do
   end
 
   create_table "handymen", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.string "first_name"
     t.string "last_name"
     t.string "title"
@@ -90,7 +89,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_202436) do
     t.datetime "updated_at", null: false
     t.text "handyman_skills"
     t.text "media_url"
-    t.index ["user_id"], name: "index_handymen_on_user_id"
+    t.integer "user_id"
   end
 
   create_table "job_proposals", force: :cascade do |t|
@@ -209,7 +208,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_202436) do
   add_foreign_key "appointments", "handymen"
   add_foreign_key "appointments", "job_proposals"
   add_foreign_key "appointments", "tasks"
-  add_foreign_key "handymen", "users"
   add_foreign_key "reviews", "clients"
   add_foreign_key "services", "service_categories"
   add_foreign_key "tasks", "clients"
