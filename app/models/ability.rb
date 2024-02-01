@@ -7,6 +7,7 @@ class Ability
     # byebug
     user = current_user
     can :manage, [Task] if user.has_role?(:client)
+    can :read, [Client] if user.has_role?(:client)
     can :read, [Task] if user.has_role?(:handyman)
     can :manage, [all] if user.has_role?(:admin)
     can :manage, [Appointment] if user.has_role?(:client)
