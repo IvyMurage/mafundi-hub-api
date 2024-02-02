@@ -13,6 +13,10 @@ class AllTaskSerializer < ActiveModel::Serializer
     }]
   end
 
+  def created_at
+    object.created_at.strftime("%B %d, %Y, %H:%M")
+  end
+
   def service_name
     object.service.service_name
   end
