@@ -1,5 +1,5 @@
 class AllTaskSerializer < ActiveModel::Serializer
-  attributes :id, :job_title, :service_name, :job_price, :duration_label
+  attributes :id, :job_title, :service_name, :job_price, :duration_label, :created_at
 
   has_one :location
 
