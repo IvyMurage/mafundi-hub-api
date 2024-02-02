@@ -6,11 +6,11 @@ ActiveRecord::Base.connection.reset_pk_sequence!("services")
 
 puts "Services categories ..."
 service_categories = [
-  { category_name: "Plumbing" },
-  { category_name: "Electrical" },
-  { category_name: "Carpentry" },
-  { category_name: "Painting" },
-  { category_name: "Cleaning" },
+  { category_name: "Plumbing", image_url: "https://res.cloudinary.com/dhpmstfkj/image/upload/v1706873925/mafundi_service_category/plumbering_vzjzyd.jpg" },
+  { category_name: "Electrical", image_url: "https://res.cloudinary.com/dhpmstfkj/image/upload/v1706873926/mafundi_service_category/electrician_envogz.jpg" },
+  { category_name: "Carpentry", image_url: "https://res.cloudinary.com/dhpmstfkj/image/upload/v1706873925/mafundi_service_category/carpentry_w3xcfa.jpg" },
+  { category_name: "Painting", image_url: "https://res.cloudinary.com/dhpmstfkj/image/upload/v1706874319/mafundi_service_category/painter_d6u3tn.jpg" },
+  { category_name: "Cleaning", image_url: "https://res.cloudinary.com/dhpmstfkj/image/upload/v1706873925/mafundi_service_category/cleaning_ivz85h.jpg" },
 ]
 
 service_categories.each do |service_category|
