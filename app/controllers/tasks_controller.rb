@@ -22,7 +22,7 @@ class TasksController < ApplicationController
     @tasks = @tasks.by_location(params[:city]) if params[:city].present?
     @tasks = @tasks.where(client_id: task_params[:client_id]) if params[:client_id].present?
     @tasks = @tasks.by_service(params[:service_id]) if params[:service_id].present?
-    tasks_json = ActiveModelSerializers::SerializableResource.new(@tasks, each_serializer: TaskSerializer).as_json
+    tasks_json = ActiveModelSerializers::SerializableResource.new(@tasks, each_serializer: AllTaskSerializer).as_json
     render json: { meta: pagination_meta(@tasks), task: tasks_json }, status: :ok
   end
 
