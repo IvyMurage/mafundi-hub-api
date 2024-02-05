@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_02_113053) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_05_065952) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -163,7 +163,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_02_113053) do
 
   create_table "tasks", force: :cascade do |t|
     t.string "job_title"
-    t.bigint "client_id", null: false
     t.text "task_description"
     t.decimal "job_price", precision: 10, scale: 2, default: "0.0"
     t.integer "service_id"
@@ -173,7 +172,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_02_113053) do
     t.datetime "updated_at", null: false
     t.string "duration_label"
     t.text "task_responsibilities"
-    t.index ["client_id"], name: "index_tasks_on_client_id"
+    t.integer "client_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -211,5 +210,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_02_113053) do
   add_foreign_key "appointments", "tasks"
   add_foreign_key "reviews", "clients"
   add_foreign_key "services", "service_categories"
-  add_foreign_key "tasks", "clients"
 end
