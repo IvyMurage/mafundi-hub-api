@@ -10,12 +10,6 @@ class ApplicationController < ActionController::API
   # Here, we use it to configure permitted parameters when using the Devise gem for authentication
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # rescue from unauthorization error
-
-  rescue_from Devise::FailureApp do |exception|
-    render json: { error: "You need to sign in or sign up before continuing." }, status: :unauthorized
-  end
-
   protected
 
   # This method is used to configure the parameters that can be sent when creating or updating a user account
