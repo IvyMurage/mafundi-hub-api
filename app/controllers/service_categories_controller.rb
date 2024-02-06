@@ -1,7 +1,7 @@
 class ServiceCategoriesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_response_not_found
   wrap_parameters format: []
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def search
     if params[:query].present?
