@@ -19,7 +19,7 @@ class HandymenController < ApplicationController
     @handymen = @handymen.by_location(params[:city]) if params[:city].present?
     @handymen = @handymen.where(service_id: params[:service_id]) if params[:service_id].present?
 
-    @handymen_json = ActiveModelSerializers::SerializableResource.new(@handymen, each_serializer: HandymanSerializer).as_json
+    @handymen_json = ActiveModelSerializers::SerializableResource.new(@handymen, each_serializer: AllHandymanSerializer).as_json
     render json: { meta: pagination_meta(@handymen), handymen: @handymen_json }, status: :ok
   end
 
