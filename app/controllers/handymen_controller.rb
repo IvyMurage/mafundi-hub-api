@@ -1,7 +1,7 @@
 class HandymenController < ApplicationController
   load_and_authorize_resource
-  skip_load_and_authorize_resource only: [:create]
-  before_action :authenticate_user!, except: [:create]
+  skip_load_and_authorize_resource only: [:create, :index]
+  before_action :authenticate_user!, except: [:create, :index]
   wrap_parameters format: []
   include Pagination
 
