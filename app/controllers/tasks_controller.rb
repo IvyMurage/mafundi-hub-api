@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  # load_and_authorize_resource
+  load_and_authorize_resource
   include Pagination
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
