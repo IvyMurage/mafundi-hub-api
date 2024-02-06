@@ -2,7 +2,7 @@ class TaskSerializer < ActiveModel::Serializer
   # Return an array of attributes to be serialized.
   include Rails.application.routes.url_helpers
 
-  attributes :links, :id, :job_title, :task_description, :job_price, :duration_label, :service_name, :task_responsibilities
+  attributes :links, :id, :job_title, :task_description, :job_price, :duration_label, :service_name, :task_responsibilities, :availability
 
   # Define a one-to-one association between Task and Location models.
   has_one :location
