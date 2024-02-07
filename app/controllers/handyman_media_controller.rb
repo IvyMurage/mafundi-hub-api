@@ -1,5 +1,5 @@
 class HandymanMediaController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def upload
     if params[:handyman_id].present?
