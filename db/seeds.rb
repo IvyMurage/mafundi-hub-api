@@ -5,35 +5,36 @@ ActiveRecord::Base.connection.reset_pk_sequence!("service_categories")
 ActiveRecord::Base.connection.reset_pk_sequence!("services")
 
 puts "Services categories ..."
-service_categories = [
-  { category_name: "Plumbing", image_url: "https://res.cloudinary.com/dhpmstfkj/image/upload/v1706873925/mafundi_service_category/plumbering_vzjzyd.jpg" },
-  { category_name: "Electrical", image_url: "https://res.cloudinary.com/dhpmstfkj/image/upload/v1706873926/mafundi_service_category/electrician_envogz.jpg" },
-  { category_name: "Carpentry", image_url: "https://res.cloudinary.com/dhpmstfkj/image/upload/v1706873925/mafundi_service_category/carpentry_w3xcfa.jpg" },
-  { category_name: "Painting", image_url: "https://res.cloudinary.com/dhpmstfkj/image/upload/v1706874319/mafundi_service_category/painter_d6u3tn.jpg" },
-  { category_name: "Cleaning", image_url: "https://res.cloudinary.com/dhpmstfkj/image/upload/v1706873925/mafundi_service_category/cleaning_ivz85h.jpg" },
+
+# Seed 20 Service Categories with Image URLs
+service_categories_data = [
+  { category_name: "Electrical", services: ["Light Fixture Installation", "Electrical Wiring Repair", "Outlet Installation"] },
+  { category_name: "Plumbing", services: ["Leak Repair", "Pipe Installation", "Drain Cleaning"] },
+  { category_name: "HVAC", services: ["AC Installation", "Heating System Repair", "Vent Cleaning"] },
+  { category_name: "Carpentry", services: ["Custom Furniture", "Door Installation", "Shelving Installation"] },
+  { category_name: "Painting", services: ["Interior Painting", "Exterior Painting", "Wallpaper Installation"] },
+  { category_name: "Cleaning", services: ["Window Cleaning", "Power Washing", "Gutter Cleaning"] },
+  { category_name: "Landscaping", services: ["Lawn Mowing", "Tree Planting", "Garden Design"] },
+  { category_name: "Pest Control", services: ["Insect Extermination", "Rodent Control", "Termite Inspection"] },
+  { category_name: "Appliance Repair", services: ["Refrigerator Repair", "Washer Repair", "Dishwasher Repair"] },
+  { category_name: "Roofing", services: ["Roof Repair", "Shingle Replacement", "Roof Inspection"] },
+  { category_name: "Flooring", services: ["Hardwood Installation", "Tile Installation", "Carpet Replacement"] },
+  { category_name: "Window Installation", services: ["Window Replacement", "Window Repair", "Skylight Installation"] },
+  { category_name: "Door Repairs", services: ["Door Frame Repair", "Lock Replacement", "Screen Door Installation"] },
+  { category_name: "Drywall Installation", services: ["Drywall Repair", "New Drywall Installation", "Plastering"] },
+  { category_name: "Masonry", services: ["Bricklaying", "Stone Path Installation", "Chimney Repair"] },
+  { category_name: "Deck Building", services: ["Deck Construction", "Deck Repair", "Pergola Installation"] },
+  { category_name: "Fence Installation", services: ["Wood Fence Installation", "Chain Link Installation", "Fence Repair"] },
+  { category_name: "Security Systems", services: ["Alarm System Installation", "CCTV Installation", "Smart Lock Installation"] },
+  { category_name: "Smart Home Setup", services: ["Smart Thermostat Installation", "Home Automation", "Smart Lighting Setup"] },
+  { category_name: "Gutter Cleaning", services: ["Gutter Maintenance", "Gutter Guard Installation", "Downspout Cleaning"] },
 ]
 
-service_categories.each do |service_category|
-  ServiceCategory.create!(service_category)
-end
-puts "Servcice category seeding done"
-
-puts "Services ..."
-services = [
-  { service_name: "Furniture Assembly", service_category_id: 3 },
-  { service_name: "Interior Painting", service_category_id: 4 },
-  { service_name: "Exterior Painting", service_category_id: 4 },
-  { service_name: "Pipe Repair'", service_category_id: 1 },
-  { service_name: "Pipe Installation", service_category_id: 1 },
-  { service_name: "Pipe Cleaning", service_category_id: 1 },
-  { service_name: "Pipe Replacement", service_category_id: 1 },
-  { service_name: "Wiring Repair", service_category_id: 2 },
-  { service_name: "Wiring Installation", service_category_id: 2 },
-  { service_name: "Home Cleaning", service_category_id: 5 },
-]
-
-services.each do |service|
-  Service.create!(service)
+service_categories_data.each do |category_data|
+  category = ServiceCategory.create(category_name: category_data[:category_name])
+  category_data[:services].each do |service_name|
+    Service.create(service_name: service_name, service_category: category)
+  end
 end
 
-puts "Services seeding done"
+puts "Seeds created successfully!"
