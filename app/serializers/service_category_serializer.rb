@@ -1,3 +1,3 @@
 class ServiceCategorySerializer < ActiveModel::Serializer
-  attributes :id, :category_name, :image_url
+  attributes :id, :category_name
 end
