@@ -6,6 +6,8 @@ class ApplicationController < ActionController::API
   # This block handles the ActiveRecord::RecordInvalid exception, which is raised when a record is invalid and cannot be saved
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
+  rescue_from JWT::ExpiredSignature, with: :custom_jwt_expired_message
+
   # The before_action method allows you to define a method that should be called before any of the controller's actions
   # Here, we use it to configure permitted parameters when using the Devise gem for authentication
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -34,5 +36,9 @@ class ApplicationController < ActionController::API
   # This method is used to render a JSON response with a status of 422 (Unprocessable Entity) when a record is invalid and cannot be saved
   def render_unprocessable_entity(exception)
     render json: { error: exception.record.errors.full_messages }, status: :unprocessable_entity
+  end
+
+  def custom_jwt_expired_message(exception)
+    render json: { error: 'Your custom "Signature has expired" message.' }, status: :unauthorized
   end
 end
