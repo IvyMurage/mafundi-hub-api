@@ -11,7 +11,6 @@ Warden::Strategies.add(:jwt_strategy) do
 
     # Extract the token from the Authorization header
     token = request.headers["Authorization"].split(" ").last
-    byebug
     begin
       # Your secret key and other JWT parameters should match your JWT configuration
       payload, header = JWT.decode(token, Rails.application.credentials.devise_jwt_secret_key, true, { algorithm: "HS256" })
