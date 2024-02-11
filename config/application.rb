@@ -48,6 +48,7 @@ module MafundiHubApi
     # Skip views, helpers and assets when generating a new resource.
 
     # Add additional load paths for your own custom dirs
+    config.autoload_paths << Rails.root.join("lib")
 
     config.api_only = true
   end

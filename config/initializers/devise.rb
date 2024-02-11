@@ -279,8 +279,8 @@ Devise.setup do |config|
   #
   config.warden do |manager|
     manager.failure_app = CustomFailureApp
-    # manager.intercept_401 = false
-    # manager.default_strategies(scope: :user).unshift :some_external_strategy
+    manager.intercept_401 = false
+    manager.default_strategies(scope: :user).unshift :jwt_strategy
   end
 
   # ==> Mountable engine configurations
@@ -320,6 +320,6 @@ Devise.setup do |config|
     jwt.revocation_requests = [
       ["DELETE", %r{^/logout$}],
     ]
-    # jwt.expiration_time = 1.day.to_i # 1.day.to_i is default
+    jwt.expiration_time = 1.day.to_i # 1.day.to_i is default
   end
 end
