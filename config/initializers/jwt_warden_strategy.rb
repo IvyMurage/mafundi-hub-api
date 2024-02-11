@@ -8,16 +8,18 @@ Warden::Strategies.add(:jwt_strategy) do
   end
 
   def authenticate!
+
     # Extract the token from the Authorization header
     token = request.headers["Authorization"].split(" ").last
-
+    byebug
     begin
       # Your secret key and other JWT parameters should match your JWT configuration
-      payload, header = JWT.decode(token, Rails.application.credentials.secret_key_base, true, { algorithm: "HS256" })
-
+      payload, header = JWT.decode(token, Rails.application.credentials.devise_jwt_secret_key, true, { algorithm: "HS256" })
+      user_id = Integer(payload["sub"])
       # Find the user based on the payload. This will depend on your user lookup logic.
       # For example:
-      user = User.find_by(id: payload["user_id"])
+
+      user = User.find_by(id: user_id)
 
       if user
         success!(user)
@@ -27,7 +29,7 @@ Warden::Strategies.add(:jwt_strategy) do
     rescue JWT::DecodeError
       fail!("Invalid token")
     rescue JWT::ExpiredSignature
-      render json: { error: "Token has expired. Please log in again." }, status: :unauthorized
+      fail!("Token has expired")
     end
   end
 end
