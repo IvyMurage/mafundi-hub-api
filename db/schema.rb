@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_08_070148) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_15_083833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -93,14 +93,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_070148) do
   end
 
   create_table "job_proposals", force: :cascade do |t|
-    t.bigint "task_id"
     t.string "job_status", default: "inprogress"
     t.text "proposal_text"
-    t.bigint "handyman_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["handyman_id"], name: "index_job_proposals_on_handyman_id"
-    t.index ["task_id"], name: "index_job_proposals_on_task_id"
+    t.integer "task_id"
+    t.integer "handyman_id"
   end
 
   create_table "locations", force: :cascade do |t|
