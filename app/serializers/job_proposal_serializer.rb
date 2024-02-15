@@ -1,3 +1,5 @@
 class JobProposalSerializer < ActiveModel::Serializer
-  attributes :id, :task_id, :job_status, :proposal_text, :handyman_id
+  attributes :id, :job_status, :proposal_text
+  has_one :handyman
+  belongs_to :task
 end

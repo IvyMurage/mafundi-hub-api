@@ -6,7 +6,7 @@ class Handyman < ApplicationRecord
   has_many_attached :work_photos, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_one :location, as: :locationable, dependent: :destroy
-
+  has_many :job_proposals, dependent: :destroy
   accepts_nested_attributes_for :location
 
   validates :first_name, presence: true
