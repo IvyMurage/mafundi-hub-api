@@ -17,7 +17,8 @@ class JobProposalsController < ApplicationController
   end
 
   def index
-    @job_proposals = JobProposal.find(task_id: params[:task_id])
+    @job_proposals = JobProposal.page(params[:page]).per(params[:per_page] || 10)
+    @job_proposals = @job_proposals.where(task_id: job_proposal_params[:task_id]) if params[:task_id].present?
     @job_proposals = @job_proposals.by_location(params[:city]) if params[:city].present?
     @job_proposals = @job_proposal.by_service(params[:service_id]) if params[:service_id].present?
     job_proposals_json = ActiveModelSerializers::SerializableResource.new(@job_proposals, each_serializer: JobProposalSerializer).as_json
@@ -67,5 +68,9 @@ class JobProposalsController < ApplicationController
       :job_status,
       :proposal_text
     )
+  end
+
+  def render_job_proposal_not_found
+    render json: { error: "Job Proposal not found" }, status: :not_found
   end
 end
