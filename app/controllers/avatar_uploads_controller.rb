@@ -5,7 +5,7 @@ class AvatarUploadsController < ApplicationController
   def upload
     if params[:avatar].present? # Check if avatar param is present
       current_user.avatar.attach(params[:avatar]) # Attach the avatar to the current user
-      if current_user.save(context: :avatar_upload) # Save the user with the new avatar
+      if current_user.save # Save the user with the new avatar
         # Update the avatar_url with the new Google Cloud Storage URL
         current_user.avatar_url = gcs_avatar_url(current_user.avatar.key.to_s)
         current_user.save! # Save the user again to update the avatar_url

@@ -18,6 +18,7 @@ class JobProposalsController < ApplicationController
   end
 
   def index
+    @job_proposals = JobProposal.find(task_id: params[:task_id])
     @job_proposals = @job_proposals.by_location(params[:city]) if params[:city].present?
     @job_proposals = @job_proposal.by_service(params[:service_id]) if params[:service_id].present?
     job_proposals_json = ActiveModelSerializers::SerializableResource.new(@job_proposals, each_serializer: JobProposalSerializer).as_json
