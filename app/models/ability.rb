@@ -17,8 +17,8 @@ class Ability
     can :read, [Handyman] if user.has_role?(:client)
     can :destroy, [Handyman] if user.has_role?(:handyman)
     can :manage, [JobProposal] if user.has_role?(:handyman)
-    can :read, [JobProposal] if user.has_role?(:client)
-    can :update, [JobProposal] if user.has_role?(:client)
+    # can :read, [JobProposal] if user.has_role?(:client)
+    # can :update, [JobProposal] if user.has_role?(:client)
 
     can :manage, [Review] if user.has_role?(:client)
 
