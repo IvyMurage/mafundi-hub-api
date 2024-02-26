@@ -71,14 +71,14 @@ test:
   # the values provided in this file. Alternatively, you can specify a connection
   # URL environment variable explicitly:
   #
-production:
-  url: <%= ENV["DATABASE_URL"] %>
+# production:
+#   url: <%= ENV["DATABASE_URL"] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-# production:
-#   <<: *default
-#   database: mafundi_hub_api_production
-#   username: mafundi_hub_api
-#   password: <%= ENV["MAFUNDI_HUB_API_DATABASE_PASSWORD"] %>
+production:
+  <<: *default
+  database: mafundi_hub_api_production
+  username: mafundi_hub_api
+  password: <%= ENV["MAFUNDI_HUB_API_DATABASE_PASSWORD"] %>
