@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def respond_with(current_user, _opts = {})
     if resource.persisted?
       render json: {
-        status: { code: 200, message: "Signed up sucessfully." },
+        message: "Signed up sucessfully.",
         user: UserSignupSerializer.new(current_user),
       }
       # UserMailer.with(user: current_user).welcome_email.deliver_now

@@ -14,7 +14,7 @@ class Users::SessionsController < Devise::SessionsController
   def respond_with(current_user, _opts = {})
     # byebug
     render json: {
-             status: { code: 200, message: "Logged in sucessfully." },
+             message: "Logged in sucessfully.",
              user: UserSerializer.new(current_user),
            },
            status: :ok
