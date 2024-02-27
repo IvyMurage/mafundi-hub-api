@@ -76,8 +76,11 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
+   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
-  database: mafundi_hub_api_production
-  username: mafundi_hub_api
-  password: <%= ENV["MAFUNDI_HUB_API_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  host: <%= ENV["PGHOST"] %>
+  database: <%= ENV["PGDATABASE"] %>
+  username: <%= ENV["PGUSER"] %>
+  password: <%= ENV["PGPASSWORD"] %>
+  port: <%= ENV["PGPORT"] %>
