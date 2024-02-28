@@ -6,6 +6,5 @@ class JobProposal < ApplicationRecord
   validates :proposal_text, presence: true
   validates :handyman, presence: true
   validates :task, presence: true
-  validates :job_status, presence: true
   validates :proposal_text, presence: true
 end
