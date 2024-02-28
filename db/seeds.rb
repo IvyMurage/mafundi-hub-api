@@ -1,8 +1,10 @@
 ServiceCategory.destroy_all
 Service.destroy_all
+User.destroy_all
 
 ActiveRecord::Base.connection.reset_pk_sequence!("service_categories")
 ActiveRecord::Base.connection.reset_pk_sequence!("services")
+ActiveRecord::Base.connection.reset_pk_sequence!("users")
 
 puts "Services categories ..."
 
@@ -38,3 +40,40 @@ service_categories_data.each do |category_data|
 end
 
 puts "Seeds created successfully!"
+
+# create users
+puts "Creating users...👨‍💼"
+emails = [
+  "john@example.com",
+  "jane@example.com",
+  "michael@example.com",
+  "emily@example.com",
+  "david@example.com",
+  "emma@example.com",
+  "james@example.com",
+  "olivia@example.com",
+  "daniel@example.com",
+  "sophia@example.com",
+]
+
+password = "password" # Common password for all users
+
+emails.each do |email|
+  first_name = email.split("@").first.capitalize # Extracting first name from email
+  User.create!(
+    email: email,
+    password: password,
+    password_confirmation: password,
+    first_name: first_name,
+  )
+end
+
+puts "Users created successfully! 🎉"
+
+puts "User roles...📋"
+# Add roles to users
+User.all.each do |user|
+  role = [:client, :handyman].sample # Randomly assign either :client or :handyman role
+  user.add_role(role)
+end
+puts "User roles added successfully! 🎉"
