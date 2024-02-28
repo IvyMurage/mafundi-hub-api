@@ -33,12 +33,12 @@ class JobProposalsController < ApplicationController
   def create
     api_key = Rails.application.credentials.dig(:firebase, :api_key)
     @job_proposal = JobProposal.create!(job_proposal_params)
-    device_token = "CLIENT_DEVICE_TOKEN"
-    title = "New Job Proposal"
-    body = "You have a new job proposal from a handyman."
-    data = { proposal_id: "123", custom_key: "custom_value" }
-    push_notification_service = PushNotificationService.new(api_key)
-    response = push_notification_service.send_notification_to_client(device_token, title, body, data)
+    # device_token = "CLIENT_DEVICE_TOKEN"
+    # title = "New Job Proposal"
+    # body = "You have a new job proposal from a handyman."
+    # data = { proposal_id: "123", custom_key: "custom_value" }
+    # push_notification_service = PushNotificationService.new(api_key)
+    # response = push_notification_service.send_notification_to_client(device_token, title, body, data)
 
     render json: @job_proposal, serializer: JobProposalSerializer, status: :created
   end
