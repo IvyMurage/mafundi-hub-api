@@ -22,12 +22,12 @@ class JobProposalsController < ApplicationController
     @job_proposals = @job_proposals.by_location(params[:city]) if params[:city].present?
     @job_proposals = @job_proposal.by_service(params[:service_id]) if params[:service_id].present?
     job_proposals_json = ActiveModelSerializers::SerializableResource.new(@job_proposals, each_serializer: JobProposalSerializer).as_json
-    render json: { meta: pagination_meta(@job_proposals), job_proposal: job_proposals_json }, status: :ok
+    render json: { meta: pagination_meta(@job_proposals), job_proposals: job_proposals_json }, status: :ok
   end
 
   def show
     @job_proposal = JobProposal.find(params[:id])
-    render json: @job_proposal, serializer: JobProposalSerializer, status: :ok
+    render json: { success: true, data: JobProposalSerializer.new(@job_proposal) }, status: :ok
   end
 
   def create
@@ -39,14 +39,13 @@ class JobProposalsController < ApplicationController
     # data = { proposal_id: "123", custom_key: "custom_value" }
     # push_notification_service = PushNotificationService.new(api_key)
     # response = push_notification_service.send_notification_to_client(device_token, title, body, data)
-
-    render json: @job_proposal, serializer: JobProposalSerializer, status: :created
+    render json: { success: true, data: JobProposalSerializer.new(@job_proposal) }, status: :created
   end
 
   def update
     @job_proposal = JobProposal.find(params[:id])
     @job_proposal.update!(job_proposal_params)
-    render json: @job_proposal, serializer: JobProposalSerializer, status: :ok
+    render json: { success: true, data: JobProposalSerializer.new(@job_proposal) }, status: :ok
   end
 
   def destroy
