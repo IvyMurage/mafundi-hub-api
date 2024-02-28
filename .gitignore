@@ -45,3 +45,5 @@
 /config/secrets/*
 
 /config/credentials/production.key
+
+/config/credentials/development.key
