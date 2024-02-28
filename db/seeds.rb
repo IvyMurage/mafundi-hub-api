@@ -59,12 +59,10 @@ emails = [
 password = "password" # Common password for all users
 
 emails.each do |email|
-  first_name = email.split("@").first.capitalize # Extracting first name from email
   User.create!(
     email: email,
     password: password,
     password_confirmation: password,
-    first_name: first_name,
   )
 end
 
