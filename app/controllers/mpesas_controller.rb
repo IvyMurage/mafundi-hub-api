@@ -128,7 +128,7 @@ class MpesasController < ApplicationController
     @token = body[:access_token]
 
     AccessToken.destroy_all()
-    AccessToken.create!(Token: @token)
+    AccessToken.create!(token: @token)
 
     @token
   end
