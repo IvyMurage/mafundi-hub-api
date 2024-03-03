@@ -30,6 +30,8 @@ class MpesasController < ApplicationController
       Authorization: "Bearer #{get_access_token}",
     }
 
+    byebug
+
     response = RestClient::Request.new({
       method: :post,
       url: url,
