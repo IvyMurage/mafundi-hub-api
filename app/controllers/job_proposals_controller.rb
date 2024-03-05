@@ -46,7 +46,7 @@ class JobProposalsController < ApplicationController
   def update
     @job_proposal = JobProposal.find(params[:id])
     @job_proposal.update!(job_proposal_params)
-    render json: { success: true, data: JobProposalSerializer.new(@job_proposal) }, status: :ok
+    render json: { success: true, data: JobProposalSerializer.new(@job_proposal) }, status: :accepted
   end
 
   def destroy
