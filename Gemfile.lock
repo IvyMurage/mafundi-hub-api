@@ -176,6 +176,9 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
@@ -186,7 +189,7 @@ GEM
     irb (1.9.1)
       rdoc
       reline (>= 0.3.8)
-    json (2.6.3)
+    json (1.8.6)
     json-schema (4.1.1)
       addressable (>= 2.8)
     jsonapi-renderer (0.2.2)
@@ -222,6 +225,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     multi_json (1.15.0)
+    multi_xml (0.6.0)
     mutex_m (0.2.0)
     net-imap (0.4.6)
       date
@@ -350,6 +354,8 @@ GEM
     trailblazer-option (0.1.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2024.1)
+      tzinfo (>= 1.0.0)
     uber (0.1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -379,6 +385,7 @@ DEPENDENCIES
   firebase (~> 0.2.8)
   geocoder
   google-cloud-storage (~> 1.8)
+  httparty (~> 0.13.7)
   image_processing (~> 1.2)
   jsonapi-serializers (~> 1.0, >= 1.0.1)
   kaminari (~> 1.2, >= 1.2.2)

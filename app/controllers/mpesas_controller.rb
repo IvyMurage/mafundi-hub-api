@@ -1,12 +1,14 @@
 class MpesasController < ApplicationController
-  require "rest-client"
+  # require "rest-client"
   rescue_from SocketError, with: :OfflineMode
+
+  require "net/http"
 
   def stkpush
     phoneNumber = params[:phone_number]
     amount = params[:amount]
 
-    url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
+    url = URI.parse("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
     timestamp = "#{Time.now.strftime "%Y%m%d%H%M%S"}"
     business_short_code = Rails.application.credentials.dig(:mpesa_keys, :mpesa_shortcode)
     passkey = Rails.application.credentials.dig(:mpesa_keys, :mpesa_passkey)
@@ -26,29 +28,30 @@ class MpesasController < ApplicationController
     }.to_json
 
     headers = {
-      content_type: "application/json",
-      Authorization: "Bearer #{get_access_token}",
+      "Content-Type" => "application/json",
+      "Authorization" => "Bearer #{get_access_token}",
     }
 
-    response = RestClient::Request.new({
-      method: :post,
-      url: url,
-      payload: payload,
-      headers: headers,
-    }).execute do |response, request|
-      case response.code
-      when 500
-        [:error, JSON.parse(response.to_str)]
-      when 200
-        [:success, JSON.parse(response.to_str)]
-      when 400
-        [:error, JSON.parse(response.to_str)]
-      else
-        fail "Invalid response #{response.to_str} received"
-      end
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Post.new(url.path, headers)
+    request.body = payload
+
+    response = http.request(request)
+
+    case response.code.to_i
+    when 500
+      [:error, JSON.parse(response.body)]
+    when 200
+      [:success, JSON.parse(response.body)]
+    when 400
+      [:error, JSON.parse(response.body)]
+    else
+      fail "Invalid response #{response.body} received"
     end
 
-    render json: response
+    render json: response.body
   end
 
   def stkpush_query

@@ -69,6 +69,7 @@ gem "rswag"
 
 gem "rest-client"
 
+gem "httparty", "~> 0.13.7"
 gem "faker"
 
 group :development, :test do
