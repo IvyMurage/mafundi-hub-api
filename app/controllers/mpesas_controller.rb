@@ -77,7 +77,7 @@ class MpesasController < ApplicationController
 
   def get_access_token
     res = generate_access_token
-    puts "res", res.inspect
+    puts "res #{res}"
 
     unless res.is_a?(Net::HTTPSuccess)
       raise MpesaError, "Unable to generate access token"
