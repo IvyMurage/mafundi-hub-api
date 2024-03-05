@@ -350,8 +350,6 @@ GEM
     trailblazer-option (0.1.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2024.1)
-      tzinfo (>= 1.0.0)
     uber (0.1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -399,4 +397,4 @@ RUBY VERSION
    ruby 3.2.0p0
 
 BUNDLED WITH
-   2.4.1
+   2.5.6
