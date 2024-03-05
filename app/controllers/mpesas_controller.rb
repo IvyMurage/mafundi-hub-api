@@ -1,5 +1,6 @@
 require "net/http"
 require "json"
+require "mpesa_error"
 
 class MpesasController < ApplicationController
   rescue_from SocketError, with: :OfflineMode
@@ -115,7 +116,7 @@ class MpesasController < ApplicationController
     if res.code != 200
       res = generate_access_token()
       if res.code != 200
-        raise MpesaError("Unable to generate access token")
+        raise MpesaError, "Unable to generate access token"
       end
     end
 
