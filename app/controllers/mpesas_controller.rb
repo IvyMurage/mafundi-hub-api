@@ -106,7 +106,7 @@ class MpesasController < ApplicationController
     headers = { Authorization: "Bearer #{userpass}" }
 
     res = Net::HTTP.get_response(URI.parse(url), headers)
-    res.body
+    res
   end
 
   def get_access_token
