@@ -65,10 +65,6 @@ gem "rolify"
 gem "rspec-rails"
 gem "rswag"
 
-# gem for sending email
-
-gem "rest-client"
-
 gem "faker"
 
 group :development, :test do

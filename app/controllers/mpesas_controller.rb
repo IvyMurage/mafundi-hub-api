@@ -1,8 +1,8 @@
-class MpesasController < ApplicationController
-  # require "rest-client"
-  rescue_from SocketError, with: :OfflineMode
+require "net/http"
+require "json"
 
-  require "net/http"
+class MpesasController < ApplicationController
+  rescue_from SocketError, with: :OfflineMode
 
   def stkpush
     phoneNumber = params[:phone_number]
@@ -57,7 +57,7 @@ class MpesasController < ApplicationController
   def stkpush_query
     checkout_request_id = params[:checkout_request_id]
 
-    url = "https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query"
+    url = URI.parse("https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query")
     timestamp = "#{Time.now.strftime "%Y%m%d%H%M%S"}"
     business_short_code = Rails.application.credentials.dig(:mpesa_keys, :mpesa_shortcode)
     passkey = Rails.application.credentials.dig(:mpesa_keys, :mpesa_passkey)
@@ -70,67 +70,62 @@ class MpesasController < ApplicationController
     }.to_json
 
     headers = {
-      content_type: "application/json",
-      Authorization: "Bearer #{get_access_token}",
+      "Content-Type" => "application/json",
+      "Authorization" => "Bearer #{get_access_token}",
     }
 
-    response = RestClient::Request.new({
-      method: :post,
-      url: url,
-      payload: payload,
-      headers: headers,
-    }).execute do |response, request|
-      case response.code
-      when 500
-        [:error, JSON.parse(response.to_str)]
-      when 200
-        [:success, JSON.parse(response.to_str)]
-      when 400
-        [error: JSON.parse(response.to_str)]
-      else
-        fail "Invalid response #{response.to_str} received"
-      end
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Post.new(url.path, headers)
+    request.body = payload
+
+    response = http.request(request)
+
+    case response.code.to_i
+    when 500
+      [:error, JSON.parse(response.body)]
+    when 200
+      [:success, JSON.parse(response.body)]
+    when 400
+      [:error, JSON.parse(response.body)]
+    else
+      fail "Invalid response #{response.body} received"
     end
 
-    render json: response
+    render json: response.body
   end
 
   private
 
   def generate_access_token
-    @url =
-      "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+    url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+    consumer_key = Rails.application.credentials.dig(:mpesa_keys, :mpesa_consumer_key)
+    consumer_secret = Rails.application.credentials.dig(:mpesa_keys, :mpesa_consumer_secret)
+    userpass = Base64.strict_encode64("#{consumer_key}:#{consumer_secret}")
+    headers = { Authorization: "Bearer #{userpass}" }
 
-    @consumer_key = Rails.application.credentials.dig(:mpesa_keys, :mpesa_consumer_key)
-    @consumer_secret = Rails.application.credentials.dig(:mpesa_keys, :mpesa_consumer_secret)
-
-    @userpass = Base64.strict_encode64("#{@consumer_key}:#{@consumer_secret}")
-    @headers = { Authorization: "Bearer #{@userpass}" }
-    res =
-      RestClient::Request.execute(
-        url: @url,
-        method: :get,
-        headers: { Authorization: "Basic #{@userpass}" },
-      )
-    res
+    res = Net::HTTP.get_response(URI.parse(url), headers)
+    res.body
   end
 
   def get_access_token
     res = generate_access_token()
 
     if res.code != 200
-      r = generate_access_token()
+      res = generate_access_token()
       if res.code != 200
         raise MpesaError("Unable to generate access token")
       end
     end
+
     body = JSON.parse(res, { symbolize_names: true })
-    @token = body[:access_token]
+    token = body[:access_token]
 
     AccessToken.destroy_all()
-    AccessToken.create!(token: @token)
+    AccessToken.create!(token: token)
 
-    @token
+    token
   end
 
   def OfflineMode
