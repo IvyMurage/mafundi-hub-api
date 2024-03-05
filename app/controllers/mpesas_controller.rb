@@ -1,11 +1,12 @@
 require "net/http"
+require "uri"
 require "json"
 
 class MpesasController < ApplicationController
   rescue_from SocketError, with: :offline_mode
 
   def stkpush
-    phoneNumber = params[:phone_number]
+    phone_number = params[:phone_number]
     amount = params[:amount]
 
     url = URI.parse("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest")
@@ -19,9 +20,9 @@ class MpesasController < ApplicationController
       Timestamp: timestamp,
       TransactionType: "CustomerPayBillOnline",
       Amount: amount,
-      PartyA: phoneNumber,
+      PartyA: phone_number,
       PartyB: business_short_code,
-      PhoneNumber: phoneNumber,
+      PhoneNumber: phone_number,
       CallBackURL: "#{Rails.application.credentials.dig(:mpesa_keys, :callback_url)}/callback_url",
       AccountReference: "Trial ROR MPESA",
       TransactionDesc: "ROR trial",
@@ -63,18 +64,20 @@ class MpesasController < ApplicationController
   private
 
   def generate_access_token
-    url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+    url = URI.parse("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials")
     consumer_key = Rails.application.credentials.dig(:mpesa_keys, :mpesa_consumer_key)
     consumer_secret = Rails.application.credentials.dig(:mpesa_keys, :mpesa_consumer_secret)
     userpass = Base64.strict_encode64("#{consumer_key}:#{consumer_secret}")
-    headers = { Authorization: "Bearer #{userpass}" }
+    headers = { "Authorization" => "Basic #{userpass}" }
 
-    Net::HTTP.get_response(URI.parse(url), headers)
+    Net::HTTP.start(url.host, url.port, use_ssl: url.scheme == "https") do |http|
+      http.request(Net::HTTP::Get.new(url.request_uri, headers))
+    end
   end
 
   def get_access_token
-    res = generate_access_token()
-    puts(res)
+    res = generate_access_token
+
     unless res.is_a?(Net::HTTPSuccess)
       raise MpesaError, "Unable to generate access token"
     end
@@ -89,10 +92,11 @@ class MpesasController < ApplicationController
   end
 
   def send_request(url, payload, headers)
-    http = Net::HTTP.new(url.host, url.port)
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
 
-    request = Net::HTTP::Post.new(url.request_uri, headers)
+    request = Net::HTTP::Post.new(uri.request_uri, headers)
     request.body = payload
 
     http.request(request)
