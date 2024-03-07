@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     @review.update!(review_params)
-    render json: { message: "Review updated Successfully", review: ReviewSerializer.new(@review) }, status: :ok
+    render json: { message: "Review updated Successfully", review: ReviewSerializer.new(@review) }, status: :accepted
   end
 
   def destroy
