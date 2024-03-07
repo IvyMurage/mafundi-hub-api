@@ -1,6 +1,5 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id, :comment, :rating, :client_name, :client_avatar, :created_at
-  belongs_to :client
+  attributes :id, :comment, :rating, :client_name, :client_avatar, :created_at, :handyman_id
 
   def client_name
     object.client.name
