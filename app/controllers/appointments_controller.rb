@@ -52,6 +52,7 @@ class AppointmentsController < ApplicationController
 
   def appointment_params
     params.permit(
+      :job_proposal_id,
       :handyman_id,
       :task_id,
       :appointment_notes,
