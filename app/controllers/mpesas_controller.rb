@@ -76,6 +76,7 @@ class MpesasController < ApplicationController
   end
 
   def get_access_token
+    byebug
     res = generate_access_token
     puts "res #{res}"
     unless res.is_a?(Net::HTTPSuccess)
