@@ -79,6 +79,7 @@ class MpesasController < ApplicationController
     res = generate_access_token
     puts "res #{res}"
 
+    byebug
     unless res.is_a?(Net::HTTPSuccess)
       raise MpesaError, "Unable to generate access token"
     end
