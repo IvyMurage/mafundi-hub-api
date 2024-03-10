@@ -32,7 +32,6 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    byebug
     @appointment = current_user.client.appointments.create!(appointment_params)
     render json: @appointment, serializer: AppointmentSerializer, status: :created
   end
