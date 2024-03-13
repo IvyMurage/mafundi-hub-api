@@ -5,7 +5,8 @@ class Task < ApplicationRecord
   serialize :task_responsibilities, type: Array, coder: JSON
   belongs_to :client # A task belongs to a client.
   belongs_to :service # A task belongs to a service.
-  has_many :job_proposals, dependent: :destroy # A task has many job proposals.
+  has_many :job_proposals, dependent: :destroy # A task has many job proposals
+  has_many :appointments, dependent: :destory
   # belongs_to :locationable, polymorphic: true
 
   has_one :location, as: :locationable, dependent: :destroy # A task has one location.
