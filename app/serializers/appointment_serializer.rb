@@ -10,7 +10,7 @@ class AppointmentSerializer < ActiveModel::Serializer
              :client_name
 
   def handyman_name
-    "#{object.handyman.first_name object.handyman.last_name}"
+    "#{object.handyman.first_name} #{object.handyman.last_name}"
   end
 
   def task_name
@@ -18,6 +18,6 @@ class AppointmentSerializer < ActiveModel::Serializer
   end
 
   def client_name
-    "#{object.client.first_name object.client.last_name}"
+    "#{object.client.first_name} #{object.client.last_name}"
   end
 end
