@@ -6,7 +6,7 @@ class ReviewSerializer < ActiveModel::Serializer
   end
 
   def client_avatar
-    object.client.user.avatar.url
+    object.client.user.avatar_url
   end
 
   def created_at

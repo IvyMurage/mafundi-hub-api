@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
   def index
     @reviews = Review.where(handyman_id: params[:handyman_id]).page(params[:page]).per(params[:per_page] || 10)
     reviews_json = ActiveModelSerializers::SerializableResource.new(@reviews, each_serializer: ReviewSerializer).as_json
-    render json: { meta: pagination_meta(@reviews), reviews: @reviews }, status: :ok
+    render json: { meta: pagination_meta(@reviews), reviews: reviews_json }, status: :ok
   end
 
   def show
