@@ -15,7 +15,6 @@ class HandymenController < ApplicationController
 
   def index
     @handymen = Handyman.page(params[:page]).per(params[:per_page] || 10)
-
     @handymen = @handymen.by_location(params[:city]) if params[:city].present?
     @handymen = @handymen.where(service_id: params[:service_id]) if params[:service_id].present?
 
