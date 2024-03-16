@@ -1,5 +1,6 @@
 class AppointmentSerializer < ActiveModel::Serializer
   attributes :id,
+             :job_proposal_id,
              :appointment_date,
              :duration,
              :appointment_notes,
