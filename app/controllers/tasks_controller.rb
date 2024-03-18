@@ -19,6 +19,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.page(params[:page]).per(params[:per_page] || 10)
+    @tasks = @tasks.where(available: true)
     @tasks = @tasks.by_location(params[:city]) if params[:city].present?
     @tasks = @tasks.where(client_id: task_params[:client_id]) if params[:client_id].present?
     @tasks = @tasks.where(available: task_params[:available]) if params[:available].present?
