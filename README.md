@@ -60,6 +60,16 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 | POST | /api/clients/create | To create a user as client|
 | POST | /api/handymen/create | To Create a user as a handyman |
 
+##### Tasks
+| HTTP Verbs | Endpoints | Action |
+| --- | --- | --- |
+| GET | /tasks | To get all tasks|
+| GET | /tasks/search?param_name=[:param] | To search for a task|
+| POST | /tasks/create | To create a new task|
+| GET | /tasks/[:id]/show| To get a single task |
+| PATCH | /tasks/[:id]/update | To update a single task|
+| DELETE | /tasks/[:id]/destroy | To delete a single tasks |
+
 | POST | /api/causes | To create a new cause |
 | GET | /api/causes | To retrieve all causes on the platform |
 | GET | /api/causes/:causeId | To retrieve details of a single cause |
