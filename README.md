@@ -55,10 +55,12 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 #### API Endpoints
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
-| POST | /api/user/signup | To sign up a new user account |
-| POST | /api/user/login | To login an existing user account |
-| POST | /api/clients/create | To create a user as client|
-| POST | /api/handymen/create | To Create a user as a handyman |
+| POST | /user/signup | To sign up a new user account |
+| POST | /user/login | To login an existing user account |
+| POST | /user/user_role | To add a user role on user create, A user can have the role of a client or handyman|
+| POST | /clients/create | To create a user as client|
+| POST | /handymen/create | To Create a user as a handyman |
+
 
 ##### Tasks
 | HTTP Verbs | Endpoints | Action |
@@ -129,8 +131,14 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 | PATCH | /appointments/[:id]/update | To update a single appointment |
 | DELETE | /appointments/[:id]/destroy | To delete a single appointment |
 
-| POST | /api/causes | To create a new cause |
-| GET | /api/causes | To retrieve all causes on the platform |
-| GET | /api/causes/:causeId | To retrieve details of a single cause |
-| PATCH | /api/causes/:causeId | To edit the details of a single cause |
-| DELETE | /api/causes/:causeId | To delete a single cause |
+##### Locations
+| HTTP Verbs | Endpoints | Action |
+| --- | --- | --- |
+| GET | /locations | To get all locations |
+| POST | /locations/create | To create a new location |
+
+##### Images
+| HTTP Verbs | Endpoints | Action |
+| --- | --- | --- |
+| POST | /upload_avatar | To upload a user profile picture |
+| POST | /work_photos| To upload work images of handymen|
