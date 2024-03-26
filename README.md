@@ -48,4 +48,6 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
       
 * #### Messages
     * A user can message a handyman
-  
+      
+* #### Payments
+    * A user can make payments for task done
