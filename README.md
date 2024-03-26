@@ -30,3 +30,12 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
     * A user can upload photos of the work they have done
     * A user can upload a profile for identification purposes
     * A user can edit their profile
+* ##### Handyman profiles
+    * A user can view profiles of different handymen
+    * A user can view the profile of a single handyman
+    * A user can leave a review for a handyman
+* #### Tasks
+    * A user can create , update and delete a task
+    * A user can view tasks they have created
+    * A user can view proposals sent for a specific tasks, reject or accept proposal
+    * 
