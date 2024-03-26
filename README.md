@@ -8,5 +8,5 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 * A user can Register a handyman
 * A user can View all available tasks
 * A user can filter available jobs by:
-                    * Location
-                    * Service
+    * Location
+    * Service
