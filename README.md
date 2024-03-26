@@ -80,6 +80,16 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 | PATCH | /handymen/[:id]/update | To update a single handyman profile|
 | DELETE | /handymen/[:id]/destroy | To delete a single handyman |
 
+##### Client
+| HTTP Verbs | Endpoints | Action |
+| --- | --- | --- |
+| GET | /clients | To get all clients|
+| GET | /clients/search?param_name=[:param] | To search for a client|
+| POST | /clients/create | To create a new client profile|
+| GET | /clients/[:id]/show| To get a single client profile |
+| PATCH | /clients/[:id]/update | To update a single client profile|
+| DELETE | /cleints/[:id]/destroy | To delete a single clients |
+
 | POST | /api/causes | To create a new cause |
 | GET | /api/causes | To retrieve all causes on the platform |
 | GET | /api/causes/:causeId | To retrieve details of a single cause |
