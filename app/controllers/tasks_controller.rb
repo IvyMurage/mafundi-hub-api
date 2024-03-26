@@ -60,6 +60,7 @@ class TasksController < ApplicationController
       :job_price,
       :service_id,
       :available,
+      :job_status,
       :instant_booking,
       :duration_label,
       task_responsibilities: [],
