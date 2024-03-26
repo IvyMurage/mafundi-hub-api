@@ -152,3 +152,5 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 ##### Technologies used
 * Ruby on Rails
 
+##### License
+This project is available for use under the MIT License.
