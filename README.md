@@ -70,6 +70,16 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 | PATCH | /tasks/[:id]/update | To update a single task|
 | DELETE | /tasks/[:id]/destroy | To delete a single tasks |
 
+##### Handymen
+| HTTP Verbs | Endpoints | Action |
+| --- | --- | --- |
+| GET | /handymen | To get all handymen|
+| GET | /handymen/search?param_name=[:param] | To search for a handyman|
+| POST | /handymen/create | To create a new handyman profile|
+| GET | /handymen/[:id]/show| To get a single handyman profile |
+| PATCH | /handymen/[:id]/update | To update a single handyman profile|
+| DELETE | /handymen/[:id]/destroy | To delete a single handyman |
+
 | POST | /api/causes | To create a new cause |
 | GET | /api/causes | To retrieve all causes on the platform |
 | GET | /api/causes/:causeId | To retrieve details of a single cause |
