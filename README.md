@@ -88,7 +88,18 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 | POST | /clients/create | To create a new client profile|
 | GET | /clients/[:id]/show| To get a single client profile |
 | PATCH | /clients/[:id]/update | To update a single client profile|
-| DELETE | /cleints/[:id]/destroy | To delete a single clients |
+| DELETE | /clients/[:id]/destroy | To delete a single client |
+
+##### Reviews
+| HTTP Verbs | Endpoints | Action |
+| --- | --- | --- |
+| GET | /reviews | To get all reviews|
+| GET | /reviews/search?param_name=[:param] | To search for a review|
+| POST | /reviews/create | To create a new review |
+| GET | /reviews/[:id]/show| To get a single review  |
+| PATCH | /reviews/[:id]/update | To update a single review |
+| DELETE | /reviews/[:id]/destroy | To delete a single review |
+
 
 | POST | /api/causes | To create a new cause |
 | GET | /api/causes | To retrieve all causes on the platform |
