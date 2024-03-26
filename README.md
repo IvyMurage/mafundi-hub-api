@@ -110,6 +110,17 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 | PATCH | /services/[:id]/update | To update a single service |
 | DELETE | /services/[:id]/destroy | To delete a single service |
 
+##### Job Proposals
+| HTTP Verbs | Endpoints | Action |
+| --- | --- | --- |
+| GET | /job_proposals | To get all job_proposals |
+| GET | /job_proposals/search?param_name=[:param] | To search for a job_proposal|
+| POST | /job_proposals/create | To create a new job_proposal |
+| GET | /job_proposals/[:id]/show| To get a single job_proposal |
+| PATCH | /job_proposals/[:id]/update | To update a single job_proposal |
+| DELETE | /job_proposals/[:id]/destroy | To delete a single job_proposal |
+
+
 | POST | /api/causes | To create a new cause |
 | GET | /api/causes | To retrieve all causes on the platform |
 | GET | /api/causes/:causeId | To retrieve details of a single cause |
