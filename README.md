@@ -142,3 +142,8 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 | --- | --- | --- |
 | POST | /upload_avatar | To upload a user profile picture |
 | POST | /work_photos| To upload work images of handymen|
+
+##### payments
+| HTTP Verbs | Endpoints | Action |
+| --- | --- | --- |
+| POST | /stkpush | To make payment |
