@@ -4,9 +4,18 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 
 ## KEY FEATURES
 #### Handyman
-* A user can sign up, login, logout
+* ##### Authentication and Registration
+    * A user can sign up, log in, logout
+    * A user can register as a handyman
+    * A user can upload photos of the work they have done
+    * A user can upload a profile for identification purpose
+    * A user can edit their profile
+* 
 * A user can Register a handyman
 * A user can View all available tasks
 * A user can filter available jobs by:
     * Location
     * Service
+* A user can View details of a single task
+* A user can send a proposal to a client to work a specific task
+* 
