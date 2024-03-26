@@ -100,6 +100,15 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 | PATCH | /reviews/[:id]/update | To update a single review |
 | DELETE | /reviews/[:id]/destroy | To delete a single review |
 
+##### Services
+| HTTP Verbs | Endpoints | Action |
+| --- | --- | --- |
+| GET | /services | To get all services|
+| GET | /services/search?param_name=[:param] | To search for a service|
+| POST | /services/create | To create a new service |
+| GET | /services/[:id]/show| To get a single service  |
+| PATCH | /services/[:id]/update | To update a single service |
+| DELETE | /services/[:id]/destroy | To delete a single service |
 
 | POST | /api/causes | To create a new cause |
 | GET | /api/causes | To retrieve all causes on the platform |
