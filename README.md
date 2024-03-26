@@ -147,3 +147,8 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
 | POST | /stkpush | To make payment |
+
+
+##### Technologies used
+* Ruby on Rails
+
