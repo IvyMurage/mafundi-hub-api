@@ -47,5 +47,5 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
     * A user can edit and also delete an appointment
       
 * #### Messages
-    A user can message a handyman
+    * A user can message a handyman
   
