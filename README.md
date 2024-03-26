@@ -60,6 +60,16 @@ git@github.com:Murage-Ivy/mafundi-hub-api.git
 ```
 * The develop branch is the most stable branch at any given time, ensure you're working from it.
 * Run bundle install to install all dependencies
+```
+bundle install
+```
+
+#### Usage 
+* Run rails s to start the application.
+```
+rails s
+```
+* Connect to the API using Postman on port 3000.
 
 
 #### API Endpoints
