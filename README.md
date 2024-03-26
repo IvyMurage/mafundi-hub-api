@@ -50,7 +50,14 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
     * A user can message a handyman
       
 * #### Payments
-    * A user can make payments for task done
+    * A user can make payments for tasks done
+
+
+### Installation Guide
+* Clone this repository [here](https://github.com/blackdevelopa/ProjectSupport.git).
+* The develop branch is the most stable branch at any given time, ensure you're working from it.
+* Run bundle install to install all dependencies
+
 
 #### API Endpoints
 | HTTP Verbs | Endpoints | Action |
