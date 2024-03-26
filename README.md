@@ -21,4 +21,12 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 * ##### Proposals
     * A user can send a proposal to a client to work a specific task
     * A user can view proposals they have sent and also the proposal status of each task
-      
+
+
+#### Client
+* ##### Authentication and Registration
+    * A user can sign up, log in, logout
+    * A user can register as a client
+    * A user can upload photos of the work they have done
+    * A user can upload a profile for identification purposes
+    * A user can edit their profile
