@@ -54,7 +54,10 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 
 
 ### Installation Guide
-* Clone this repository [here](git@github.com:Murage-Ivy/mafundi-hub-api.git).
+* Clone this repository [here).
+```
+git@github.com:Murage-Ivy/mafundi-hub-api.git
+```
 * The develop branch is the most stable branch at any given time, ensure you're working from it.
 * Run bundle install to install all dependencies
 
