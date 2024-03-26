@@ -22,7 +22,10 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
     * A user can send a proposal to a client to work a specific task
     * A user can view proposals they have sent and also the proposal status of each task
 
+* #### Messages
+    A user can message a handyman
 
+  
 #### Client
 * ##### Authentication and Registration
     * A user can sign up, log in, logout
@@ -35,7 +38,14 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
     * A user can view the profile of a single handyman
     * A user can leave a review for a handyman
 * #### Tasks
-    * A user can create , update and delete a task
+    * A user can create, update, and delete a task
     * A user can view tasks they have created
-    * A user can view proposals sent for a specific tasks, reject or accept proposal
-    * 
+    * A user can view proposals sent for specific tasks, reject or accept proposal
+      
+* #### Appointments
+    * A user can schedule an appointment
+    * A user can edit and also delete an appointment
+      
+* #### Messages
+    A user can message a handyman
+  
