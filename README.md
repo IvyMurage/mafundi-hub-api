@@ -52,11 +52,14 @@ In response to the exponential growth of the real estate sector in Kenya, spurre
 * #### Payments
     * A user can make payments for task done
 
-### API Endpoints
+#### API Endpoints
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
 | POST | /api/user/signup | To sign up a new user account |
 | POST | /api/user/login | To login an existing user account |
+| POST | /api/clients/create | To create a user as client|
+| POST | /api/handymen/create | To Create a user as a handyman |
+
 | POST | /api/causes | To create a new cause |
 | GET | /api/causes | To retrieve all causes on the platform |
 | GET | /api/causes/:causeId | To retrieve details of a single cause |
