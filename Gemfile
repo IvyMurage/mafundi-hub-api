@@ -63,6 +63,7 @@ gem "fcm", "~> 1.0", ">= 1.0.8"
 gem "rolify"
 
 gem "rspec-rails"
+
 gem "rswag"
 
 gem "faker"
